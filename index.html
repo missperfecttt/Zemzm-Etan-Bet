@@ -2,10 +2,7 @@
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
-    <meta name="theme-color" content="#12100e">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zemzm Etan Bet | ዘምዘም ዕጣን ቤት - Premium Spices & Frankincense</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -14,10 +11,6 @@
     <!-- Chart.js for Sensory Profiles -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <!-- Google Fonts - Better Amharic (Ethiopic) support -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Ethiopic:wght@400;500;600;700&family=Noto+Serif+Ethiopic:wght@400;600;700&display=swap" rel="stylesheet">
     <!-- Font Awesome for Social Media Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     
@@ -36,8 +29,8 @@
                         goldAccent: '#d97706',
                     },
                     fontFamily: {
-                        serif: ['"Noto Serif Ethiopic"', 'Georgia', 'serif'],
-                        sans: ['"Noto Sans Ethiopic"', 'system-ui', '-apple-system', 'sans-serif'],
+                        serif: ['Georgia', 'serif'],
+                        sans: ['system-ui', '-apple-system', 'sans-serif'],
                     }
                 }
             }
@@ -79,8 +72,7 @@
             backdrop-filter: blur(12px);
             border: 1px solid rgba(245, 158, 11, 0.15);
         }
-        /* 3D hove
-r tilt simulation class */
+        /* 3D hover tilt simulation class */
         .tilt-card {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             transform-style: preserve-3d;
@@ -89,112 +81,6 @@ r tilt simulation class */
             transform: translateY(-6px) rotateX(2deg) rotateY(-2deg);
             box-shadow: 0 20px 25px -5px rgba(245, 158, 11, 0.15), 0 10px 10px -5px rgba(0, 0, 0, 0.5);
         }
-
-        /* ========== PHONE / MOBILE OPTIMIZATIONS ========== */
-        html, body {
-            overflow-x: hidden;
-            -webkit-tap-highlight-color: rgba(245, 158, 11, 0.25);
-            touch-action: manipulation;
-        }
-        /* Safe area for notched phones */
-        body {
-            padding-left: env(safe-area-inset-left);
-            padding-right: env(safe-area-inset-right);
-        }
-        /* Larger touch targets */
-        button, a, .tilt-card, select, input[type="range"] {
-            min-height: 44px;
-        }
-        /* Header mobile refinements */
-        @media (max-width: 640px) {
-            header .h-20 { height: auto; min-height: 4.5rem; padding-top: 0.5rem; padding-bottom: 0.5rem; }
-            header h1 { font-size: 1rem !important; line-height: 1.25; }
-            header h1 span.text-xs { font-size: 0.65rem; padding: 0.15rem 0.4rem; }
-            #mobileMenu a { padding-top: 0.85rem; padding-bottom: 0.85rem; font-size: 1rem; }
-            /* Hero */
-            #home { min-height: 62vh !important; padding-top: 1rem; padding-bottom: 1.5rem; }
-            #home h1 { font-size: 1.85rem !important; }
-            /* Product cards & filters */
-            #productGrid { gap: 1rem; }
-            .tilt-card { padding: 1rem !important; }
-            /* Modal almost full screen on phone */
-            #productModal > div {
-                max-width: 100% !important;
-                max-height: 95vh !important;
-                margin: 0.5rem;
-                border-radius: 1.25rem !important;
-            }
-            #productModal button.absolute { width: 2.25rem; height: 2.25rem; font-size: 1rem; }
-            /* Cart drawer full width */
-            #cartDrawer > div { max-width: 100% !important; }
-            /* Charts */
-            .chart-container { height: 280px !important; }
-            /* Reduce heavy hover transforms on touch devices */
-            .tilt-card:hover {
-                transform: translateY(-3px);
-            }
-        }
-        @media (max-width: 400px) {
-            #home h1 { font-size: 1.6rem !important; }
-            header .flex.items-center.gap-3 img { width: 2.25rem; height: 2.25rem; }
-        }
-        /* Better range input for fingers */
-        input[type="range"] {
-            height: 1.5rem;
-            accent-color: #f59e0b;
-        }
-
-
-        /* Extra phone polish */
-        @media (max-width: 640px) {
-            .space-y-20 > * + * { margin-top: 3.5rem !important; }
-            main { padding-bottom: 5rem; }
-            /* Bigger cart button text on phone */
-            header button span { font-size: 0.8rem; }
-            /* Product image height on phone */
-            #productGrid .h-32 { height: 9rem; }
-            /* Make category cards easier to tap */
-            #categories .tilt-card { paddi
-ng: 1.25rem !important; }
-            /* Footer social icons larger */
-            footer .w-9 { width: 2.75rem; height: 2.75rem; }
-            /* Better select & input on iOS */
-            select, input, textarea { font-size: 16px !important; } /* prevents iOS zoom */
-        }
-        /* Amharic text rendering improvements */
-        body, .font-sans, .font-serif {
-            font-feature-settings: "kern";
-            text-rendering: optimizeLegibility;
-            -webkit-font-smoothing: antialiased;
-        }
-
-
-        /* ===== HEADER FIX FOR PHONE (screenshot problem) ===== */
-        @media (max-width: 640px) {
-            header .glass-panel, header {
-                padding-left: env(safe-area-inset-left);
-                padding-right: env(safe-area-inset-right);
-            }
-            /* Prevent title from pushing buttons off screen */
-            header a.flex-1 {
-                max-width: calc(100% - 160px);
-            }
-            header h1 {
-                font-size: 13px !important;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-            }
-            /* Keep buttons from wrapping */
-            header .flex.items-center.gap-1\.5 {
-                flex-shrink: 0;
-            }
-        }
-        @media (max-width: 380px) {
-            header h1 { font-size: 12px !important; }
-            #langToggleBtn, header button { padding-left: 0.5rem; padding-right: 0.5rem; font-size: 10px !important; }
-        }
-
     </style>
 </head>
 <body class="bg-espresso text-gray-200 font-sans antialiased selection:bg-turmeric selection:text-espresso">
@@ -214,8 +100,7 @@ ng: 1.25rem !important; }
          9. Cart Drawer with local pickup vs delivery options and direct WhatsApp/Phone order launcher for +251 98 048 2885.
     -->
 
-    <!-- Visualization & Content 
-Choices:
+    <!-- Visualization & Content Choices:
          - Visual Dot Indicators Removed: Glowing dot icons on badges, headers, status indicators, and pins removed for a cleaner minimal look.
          - Text Conciseness: Trimmed all long paragraphs, descriptions, and dictionary strings to key impactful phrases.
          - Real High-Definition Photography -> Sourced from curated Unsplash imagery for authentic Ethiopian spices, frankincense resins, and traditional coffee ceremonies.
@@ -227,70 +112,57 @@ Choices:
 
     <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
 
-    <!-- NAVIGATION HEADER - Mobile Fixed -->
+    <!-- NAVIGATION HEADER -->
     <header class="sticky top-0 z-40 glass-panel border-b border-amber-900/30">
-        <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
-            <!-- Top row: Logo + Actions -->
-            <div class="flex items-center justify-between gap-2 py-2.5 min-h-[56px]">
-                
-                <!-- Brand Logo (compact on phone) -->
-                <a href="#" class="flex items-center gap-2 min-w-0 flex-1 group">
-                    <img src="https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=120&q=80" 
-                         alt="Zemzm Emblem" 
-                         class="w-9 h-9 sm:w-10 sm:h-10 rounded-full object-cover border-2 border-turmeric/60 shadow-lg shadow-amber-500/20 flex-shrink-0">
-                    <div class="min-w-0 overflow-hidden">
-                        <h1 class="text-[13px] sm:text-lg font-bold tracking-wide text-cream font-serif leading-tight truncate">
-                            ዘምዘም ዕጣን ቤት
-                        </h1>
-                        <div class="flex items-center gap-1.5 mt-0.5">
-                            <span class="text-[9px] sm:text-xs px-1.5 py-0.5 rounded bg-turmeric/20 text-turmeric font-sans font-normal border border-turmeric/30 leading-none">Bethel</span>
-                            <p class="text-[9px] sm:text-xs text-amber-200/70 tracking-wider uppercase truncate hidden xs:block" data-i18n="brand_subtitle">Zemzm Spice & Frankincense</p>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- Desktop Nav Links -->
-                <nav class="hidden md:flex items-center space-x-6 text-sm font-medium flex-shrink-0">
-                    <a href="#home" class="text-amber-100 hover:text-turmeric transition-colors" data-i18n="nav_home">Home</a>
-                    <a href="#categories" class="text-gray-300 hover:text-turmeric transition-colors" data-i18n="nav_categories">Categories</a>
-                    <a href="#catalog" class="text-gray-300 hover:text-turmeric transition-colors" data-i18n="nav_shop">Shop</a>
-                    <a href="#sensory" class="text-gray-300 hover:text-turmeric transition-colors" data-i18n="nav_sensory">Flavor Profile
-</a>
-                    <a href="#location" class="text-gray-300 hover:text-turmeric transition-colors" data-i18n="nav_location">Visit Us</a>
-                </nav>
-
-                <!-- Actions: Lang + Cart + Menu -->
-                <div class="flex items-center gap-1.5 sm:gap-3 flex-shrink-0">
-                    <!-- Language Switcher -->
-                    <button id="langToggleBtn" onclick="toggleLanguage()" 
-                            class="px-2.5 py-1.5 sm:px-3.5 sm:py-1.5 rounded-full bg-panelBg border border-amber-500/30 text-[11px] sm:text-xs font-semibold text-cream hover:border-turmeric transition-all shadow-sm whitespace-nowrap"
-                            title="Switch Language / ቋንቋ ይቀይሩ">
-                        <span id="langLabel">English</span>
-                    </button>
-
-                    <!-- Cart Button -->
-                    <button onclick="toggleCartDrawer(true)" 
-                            class="relative px-2.5 py-1.5 sm:px-3 sm:py-2 rounded-xl bg-panelBg border border-amber-500/20 text-cream hover:bg-turmeric hover:text-espresso transition-all shadow-md flex items-center gap-1 sm:gap-2 text-[11px] sm:text-xs font-bold whitespace-nowrap">
-                        <span>Cart</span>
-                        <span id="cartBadge" class="bg-berbere text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full scale-0 transition-transform min-w-[18px] text-center">0</span>
-                    </button>
-
-                    <!-- Mobile Menu Button -->
-                    <button onclick="toggleMobileMenu()" 
-                            class="md:hidden w-10 h-10 flex items-center justify-center text-cream text-xs font-bold border border-amber-900/40 rounded-xl active:bg-turmeric active:text-espresso transition-colors flex-shrink-0">
-                        ☰
-                    </button>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <img src="https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=120&q=80" alt="Zemzm Emblem" class="w-10 h-10 rounded-full object-cover border-2 border-turmeric/60 shadow-lg shadow-amber-500/20 group-hover:scale-105 transition-transform">
+                <div>
+                    <h1 class="text-xl font-bold tracking-wide text-cream font-serif flex items-center gap-2">
+                        <span>ዘምዘም ዕጣን ቤት</span>
+                        <span class="text-xs px-2 py-0.5 rounded bg-turmeric/20 text-turmeric font-sans font-normal border border-turmeric/30">Bethel</span>
+                    </h1>
+                    <p class="text-xs text-amber-200/70 tracking-widest uppercase" data-i18n="brand_subtitle">Zemzm Spice & Frankincense</p>
                 </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium">
+                <a href="#home" class="text-amber-100 hover:text-turmeric transition-colors" data-i18n="nav_home">Home</a>
+                <a href="#categories" class="text-gray-300 hover:text-turmeric transition-colors" data-i18n="nav_categories">Categories</a>
+                <a href="#catalog" class="text-gray-300 hover:text-turmeric transition-colors" data-i18n="nav_shop">Shop</a>
+                <a href="#sensory" class="text-gray-300 hover:text-turmeric transition-colors" data-i18n="nav_sensory">Flavor Profile</a>
+                <a href="#location" class="text-gray-300 hover:text-turmeric transition-colors" data-i18n="nav_location">Visit Us</a>
+            </nav>
+
+            <!-- Actions: Lang Toggle & Cart -->
+            <div class="flex items-center space-x-4">
+                <!-- Language Switcher (No Dot) -->
+                <button id="langToggleBtn" onclick="toggleLanguage()" class="px-3.5 py-1.5 rounded-full bg-panelBg border border-amber-500/30 text-xs font-semibold text-cream hover:border-turmeric transition-all shadow-sm" title="Switch Language / ቋንቋ ይቀይሩ">
+                    <span id="langLabel">አማርኛ</span>
+                </button>
+
+                <!-- Cart Button -->
+                <button onclick="toggleCartDrawer(true)" class="relative px-3 py-2 rounded-xl bg-panelBg border border-amber-500/20 text-cream hover:bg-turmeric hover:text-espresso transition-all shadow-md flex items-center gap-2 group text-xs font-bold">
+                    <span>Cart</span>
+                    <span id="cartBadge" class="bg-berbere text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full scale-0 transition-transform">0</span>
+                </button>
+
+                <!-- Mobile Menu Button -->
+                <button onclick="toggleMobileMenu()" class="md:hidden p-2 text-cream text-sm font-bold border border-amber-900/40 rounded-lg">
+                    MENU
+                </button>
             </div>
         </div>
 
         <!-- Mobile Navigation Menu -->
-        <div id="mobileMenu" class="hidden md:hidden bg-cardBg border-b border-amber-900/40 px-4 pt-1 pb-4 space-y-1">
-            <a href="#home" onclick="toggleMobileMenu()" class="block py-3 text-amber-100 hover:text-turmeric border-b border-panelBg text-sm" data-i18n="nav_home">Home</a>
-            <a href="#categories" onclick="toggleMobileMenu()" class="block py-3 text-gray-300 hover:text-turmeric border-b border-panelBg text-sm" data-i18n="nav_categories">Categories</a>
-            <a href="#catalog" onclick="toggleMobileMenu()" class="block py-3 text-gray-300 hover:text-turmeric border-b border-panelBg text-sm" data-i18n="nav_shop">Shop</a>
-            <a href="#sensory" onclick="toggleMobileMenu()" class="block py-3 text-gray-300 hover:text-turmeric border-b border-panelBg text-sm" data-i18n="nav_sensory">Flavor Profile</a>
-            <a href="#location" onclick="toggleMobileMenu()" class="block py-3 text-gray-300 hover:text-turmeric text-sm" data-i18n="nav_location">Visit Us</a>
+        <div id="mobileMenu" class="hidden md:hidden bg-cardBg border-b border-amber-900/40 px-4 pt-2 pb-6 space-y-3">
+            <a href="#home" onclick="toggleMobileMenu()" class="block py-2 text-amber-100 hover:text-turmeric border-b border-panelBg" data-i18n="nav_home">Home</a>
+            <a href="#categories" onclick="toggleMobileMenu()" class="block py-2 text-gray-300 hover:text-turmeric border-b border-panelBg" data-i18n="nav_categories">Categories</a>
+            <a href="#catalog" onclick="toggleMobileMenu()" class="block py-2 text-gray-300 hover:text-turmeric border-b border-panelBg" data-i18n="nav_shop">Shop</a>
+            <a href="#sensory" onclick="toggleMobileMenu()" class="block py-2 text-gray-300 hover:text-turmeric border-b border-panelBg" data-i18n="nav_sensory">Flavor Profile</a>
+            <a href="#location" onclick="toggleMobileMenu()" class="block py-2 text-gray-300 hover:text-turmeric" data-i18n="nav_location">Visit Us</a>
         </div>
     </header>
 
@@ -298,8 +170,7 @@ Choices:
     <main class="space-y-20 pb-16">
 
         <!-- SECTION 1: HERO HEADER WITH 3D CANVAS -->
-        <section id="home" class="relative min-h-[75vh] flex items-center overflow-hidden pt
--6 pb-10">
+        <section id="home" class="relative min-h-[75vh] flex items-center overflow-hidden pt-6 pb-10">
             <!-- 3D WebGL Canvas Background -->
             <div class="absolute inset-0 z-0">
                 <canvas id="heroCanvas" class="w-full h-full opacity-60"></canvas>
@@ -340,8 +211,7 @@ Choices:
                         <a href="#catalog" class="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-gradient-to-r from-turmeric to-amber-600 text-espresso font-bold text-sm shadow-xl shadow-turmeric/20 hover:scale-105 transition-all text-center" data-i18n="cta_shop">
                             Explore Collection →
                         </a>
-                        <a href="#sensory" class="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-panelBg border border-amber-500/30 text-cream font-semibold text-sm hover:bg-cardBg hover:bor
-der-turmeric transition-all text-center" data-i18n="cta_sensory">
+                        <a href="#sensory" class="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-panelBg border border-amber-500/30 text-cream font-semibold text-sm hover:bg-cardBg hover:border-turmeric transition-all text-center" data-i18n="cta_sensory">
                             Flavor Profiles
                         </a>
                     </div>
@@ -383,8 +253,7 @@ der-turmeric transition-all text-center" data-i18n="cta_sensory">
                                 </button>
                             </div>
                         </div>
-                  
-  </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -415,8 +284,7 @@ der-turmeric transition-all text-center" data-i18n="cta_sensory">
 
                 <!-- Pillar 3: Natural Herbs -->
                 <div onclick="filterByCategory('herbs')" class="cursor-pointer tilt-card p-5 rounded-2xl bg-cardBg border border-amber-900/30 hover:border-turmeric/50 transition-all text-center space-y-3 group">
-                    <img src="https://images.unsplash.com/photo-1509358271058-acd22cc93898?auto=format&fit=crop&w=400&q=80" alt="Herbs and Seeds" class="w-20 h-20 mx-auto rounded-full object-cover border-2 border-emerald-500/40 shadow-xl group-hover:scale-105 transition-trans
-form">
+                    <img src="https://images.unsplash.com/photo-1509358271058-acd22cc93898?auto=format&fit=crop&w=400&q=80" alt="Herbs and Seeds" class="w-20 h-20 mx-auto rounded-full object-cover border-2 border-emerald-500/40 shadow-xl group-hover:scale-105 transition-transform">
                     <h3 class="text-lg font-serif font-bold text-cream" data-i18n="cat_3_title">Herbs & Seeds (ባህላዊ እፅዋት)</h3>
                     <p class="text-xs text-amber-100/70 leading-relaxed" data-i18n="cat_3_desc">Black Cumin (Tikur Azmud), Koseret & Rue.</p>
                     <span class="inline-block text-xs text-turmeric font-semibold group-hover:translate-x-1 transition-transform" data-i18n="btn_explore_cat">Browse Herbs →</span>
@@ -451,8 +319,7 @@ form">
                             <button onclick="setCategoryFilter('spices')" class="cat-btn px-3 py-1 rounded-lg text-xs font-medium bg-panelBg text-gray-300 hover:text-turmeric border border-amber-900/30" data-cat="spices" data-i18n="filter_spices">Spices</button>
                             <button onclick="setCategoryFilter('etan')" class="cat-btn px-3 py-1 rounded-lg text-xs font-medium bg-panelBg text-gray-300 hover:text-turmeric border border-amber-900/30" data-cat="etan" data-i18n="filter_etan">Etan</button>
                             <button onclick="setCategoryFilter('herbs')" class="cat-btn px-3 py-1 rounded-lg text-xs font-medium bg-panelBg text-gray-300 hover:text-turmeric border border-amber-900/30" data-cat="herbs" data-i18n="filter_herbs">Herbs</button>
-    
-                    </div>
+                        </div>
                     </div>
 
                     <!-- Heat Level Filter Slider -->
@@ -504,8 +371,7 @@ form">
 
                         <!-- Product Selector -->
                         <div class="space-y-2">
-                            <label class="block text-xs font-semibold text-
-amber-200/80 uppercase tracking-wider" data-i18n="label_select_sensory">Select Product</label>
+                            <label class="block text-xs font-semibold text-amber-200/80 uppercase tracking-wider" data-i18n="label_select_sensory">Select Product</label>
                             <select id="sensoryProductSelect" onchange="updateSensoryChart()" class="w-full px-3.5 py-2.5 rounded-xl bg-espresso border border-amber-500/30 text-cream text-xs focus:outline-none focus:border-turmeric">
                                 <option value="berbere_special">Special Berbere (ልዩ በርበሬ)</option>
                                 <option value="etan_white">White Ogaden Frankincense (ነጭ ዕጣን)</option>
@@ -547,8 +413,7 @@ amber-200/80 uppercase tracking-wider" data-i18n="label_select_sensory">Select P
                         <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=150&q=80" alt="Coffee Ceremony" class="w-12 h-12 rounded-xl object-cover border border-amber-500/40 shadow-md">
                         <h3 class="text-xl font-serif font-bold text-cream" data-i18n="heritage_title">Coffee & Incense Heritage</h3>
                     </div>
-                    <p class="text-xs sm:text-sm text-amber-100/80 leading-relaxed" 
-data-i18n="heritage_desc">
+                    <p class="text-xs sm:text-sm text-amber-100/80 leading-relaxed" data-i18n="heritage_desc">
                         Our frankincense tears are harvested from eastern highlands for authentic, clean-burning coffee ceremonies without synthetic additives.
                     </p>
                     
@@ -599,8 +464,7 @@ data-i18n="heritage_desc">
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-            
-    <!-- Interactive Styled HTML Canvas Store Map -->
+                <!-- Interactive Styled HTML Canvas Store Map -->
                 <div class="lg:col-span-7 p-5 rounded-3xl bg-cardBg border border-amber-900/30 flex flex-col justify-between">
                     <div>
                         <div class="flex justify-between items-center mb-3">
@@ -645,8 +509,7 @@ data-i18n="heritage_desc">
                         </a>
                         <button type="button" onclick="estimateDeliveryAndScroll()" class="py-2.5 rounded-xl bg-panelBg border border-amber-500/30 text-cream font-bold text-xs hover:border-turmeric transition-colors">
                             Estimate Delivery
-   
-                     </button>
+                        </button>
                     </div>
                 </div>
 
@@ -693,8 +556,7 @@ data-i18n="heritage_desc">
             <div class="space-y-2">
                 <div class="flex items-center gap-2.5">
                     <img src="https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=100&q=80" alt="Zemzm Emblem" class="w-7 h-7 rounded-full object-cover border border-amber-500/40">
-                    <span class="text-base font-serif font-bold text-cream">ዘምዘም ዕጣን ቤት</
-span>
+                    <span class="text-base font-serif font-bold text-cream">ዘምዘም ዕጣን ቤት</span>
                 </div>
                 <p class="text-amber-200/70 text-xs" data-i18n="footer_about">
                     5.0-star local spice and frankincense store in Bethel, Addis Ababa.
@@ -753,8 +615,7 @@ span>
                             <i class="fa-brands fa-instagram"></i>
                         </a>
 
-                        <!-- Tik
-Tok -->
+                        <!-- TikTok -->
                         <a href="https://www.tiktok.com/"
                            target="_blank"
                            rel="noopener noreferrer"
@@ -805,8 +666,7 @@ Tok -->
                     
                     <div class="h-24 bg-espresso rounded-xl border border-amber-900/40 relative overflow-hidden flex items-center justify-center">
                         <canvas id="modal3DCanvas" class="w-full h-full cursor-grab active:cursor-grabbing"></canvas>
-                        <div class="absolute bottom-1 text-[9px] tex
-t-amber-200/50">
+                        <div class="absolute bottom-1 text-[9px] text-amber-200/50">
                             3D Crystal Visualizer
                         </div>
                     </div>
@@ -858,8 +718,7 @@ t-amber-200/50">
 
     <!-- CART DRAWER MODAL (No Dot in Header) -->
     <div id="cartDrawer" class="fixed inset-0 z-50 hidden bg-black/70 backdrop-blur-xs flex justify-end">
-        <div class="bg-cardBg border-l border-amber-500/20 w-full ma
-x-w-md h-full flex flex-col justify-between p-6 space-y-5 shadow-2xl">
+        <div class="bg-cardBg border-l border-amber-500/20 w-full max-w-md h-full flex flex-col justify-between p-6 space-y-5 shadow-2xl">
             <!-- Header -->
             <div class="flex justify-between items-center border-b border-amber-900/40 pb-3">
                 <h3 class="text-lg font-serif font-bold text-cream" data-i18n="cart_drawer_title">Your Cart / ቅርጫት</h3>
@@ -904,7 +763,7 @@ x-w-md h-full flex flex-col justify-between p-6 space-y-5 shadow-2xl">
     <!-- JAVASCRIPT APPLICATION LOGIC -->
     <script>
         // --- 1. BASE DATA & STATE MANAGEMENT ---
-        let currentLang = 'am'; // Default language is Amharic
+        let currentLang = 'am';
         let activeCategoryFilter = 'all';
         let cart = [];
         let activeModalProduct = null;
@@ -919,8 +778,7 @@ x-w-md h-full flex flex-col justify-between p-6 space-y-5 shadow-2xl">
                 desc_en: 'Red pepper ground with korarima, garlic, ginger, and herbs.',
                 desc_am: 'በኮረሪማ፣ በነጭ ሽንኩርት እና በቅመማ ቅመም የተዘጋጀ ልዩ በርበሬ።',
                 priceBaseETB: 450,
-                heatLevel
-: 4,
+                heatLevel: 4,
                 origin: 'Gojjam & Bali Highlands',
                 pairing: 'Doro Wat, Key Wat',
                 badge: 'Bestseller',
@@ -986,8 +844,7 @@ x-w-md h-full flex flex-col justify-between p-6 space-y-5 shadow-2xl">
                 priceBaseETB: 380,
                 heatLevel: 1,
                 origin: 'Addis Ababa',
-            
-    pairing: 'Finishing Stews',
+                pairing: 'Finishing Stews',
                 badge: 'Chef Choice',
                 colorHex: 0x78350f,
                 imageUrl: 'https://images.unsplash.com/photo-1532336414038-cf19250c5757?auto=format&fit=crop&w=600&q=80',
@@ -1054,8 +911,7 @@ x-w-md h-full flex flex-col justify-between p-6 space-y-5 shadow-2xl">
                 nav_location: "Visit Us",
                 hero_heading_1: "Aroma. Flavor. Tradition.",
                 hero_heading_2: "የጣዕም እና የሽታ ጥግ",
-                hero_subtext: "Authentic Ethiopian spices, ground Shiro, and pure Ogaden frankinc
-ense tears. Located in front of Awash Bank, Bethel Street.",
+                hero_subtext: "Authentic Ethiopian spices, ground Shiro, and pure Ogaden frankincense tears. Located in front of Awash Bank, Bethel Street.",
                 stat_location: "Bethel, Kolfe Keranyo K07",
                 stat_hours: "Open Daily till 9:30 PM",
                 cta_shop: "Explore Collection →",
@@ -1106,8 +962,7 @@ ense tears. Located in front of Awash Bank, Bethel Street.",
                 footer_links: "Quick Navigation",
                 footer_contact: "Store Contact",
                 footer_newsletter: "Stay Updated",
-                footer_newsletter_desc: "To check
- some updates you might want to check, please follow us on Telegram.",
+                footer_newsletter_desc: "To check some updates you might want to check, please follow us on Telegram.",
                 label_portion: "Select Portion Weight",
                 label_total_price: "Total Price",
                 cart_drawer_title: "Your Cart / ቅርጫት",
@@ -1170,8 +1025,7 @@ ense tears. Located in front of Awash Bank, Bethel Street.",
                 label_subcity: "ክፍለ ከተማ ይምረጡ",
                 label_est_time: "የሚወስደው ጊዜ",
                 label_est_fee: "የማድረሻ ዋጋ",
-              
-  del_note: "* ከ 1,500 ብር በላይ ላዘዙ የቤተል አካባቢ ነፃ ማድረሻ!",
+                del_note: "* ከ 1,500 ብር በላይ ላዘዙ የቤተል አካባቢ ነፃ ማድረሻ!",
                 footer_about: "በቤተል አዲስ አበባ የሚገኝ የ 5.0 ኮከብ የቅመም እና የዕጣን መደብር።",
                 footer_links: "ፈጣን ማውጫ",
                 footer_contact: "አድራሻ እና ስልክ",
@@ -1195,17 +1049,15 @@ ense tears. Located in front of Awash Bank, Bethel Street.",
             const canvas = document.getElementById('heroCanvas');
             if (!canvas) return;
 
-            const isMobile = window.innerWidth < 768 || /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-            const particleCount = isMobile ? 35 : 90;   // Much fewer particles on phone = faster
-            const pixelRatio = isMobile ? Math.min(window.devicePixelRatio, 1.25) : Math.min(window.devicePixelRatio, 2);
-
             heroScene = new THREE.Scene();
             heroCamera = new THREE.PerspectiveCamera(60, canvas.clientWidth / canvas.clientHeight, 0.1, 1000);
             heroCamera.position.z = 25;
 
-            heroRenderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: !isMobile });
+            heroRenderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
             heroRenderer.setSize(canvas.clientWidth, canvas.clientHeight);
-            heroRenderer.setPixelRatio(pixelRatio);
+            heroRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+            const particleCount = 100;
             const geometry = new THREE.BufferGeometry();
             const positions = new Float32Array(particleCount * 3);
             const colors = new Float32Array(particleCount * 3);
@@ -1241,8 +1093,7 @@ ense tears. Located in front of Awash Bank, Bethel Street.",
             particleSystem = new THREE.Points(geometry, material);
             heroScene.add(particleSystem);
 
-            const ambientLight = new THREE.AmbientL
-ight(0xffffff, 0.8);
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
             heroScene.add(ambientLight);
 
             window.addEventListener('mousemove', (e) => {
@@ -1268,18 +1119,14 @@ ight(0xffffff, 0.8);
             const canvas = document.getElementById('featuredProduct3DCanvas');
             if (!canvas) return;
 
-            const isMobile = window.innerWidth < 768 || /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-
             featScene = new THREE.Scene();
             featCamera = new THREE.PerspectiveCamera(50, canvas.clientWidth / canvas.clientHeight, 0.1, 100);
             featCamera.position.z = 4.5;
 
-            featRenderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: !isMobile });
+            featRenderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
             featRenderer.setSize(canvas.clientWidth, canvas.clientHeight);
-            featRenderer.setPixelRatio(isMobile ? 1.2 : Math.min(window.devicePixelRatio, 2));
 
-            // Lower detail geometry on mobile for speed
-            const geo = new THREE.IcosahedronGeometry(1.5, isMobile ? 0 : 1);
+            const geo = new THREE.IcosahedronGeometry(1.5, 1);
             const mat = new THREE.MeshStandardMaterial({
                 color: 0xf59e0b,
                 roughness: 0.3,
@@ -1295,31 +1142,18 @@ ight(0xffffff, 0.8);
             featScene.add(new THREE.AmbientLight(0xffffff, 0.5));
 
             let isDragging = false;
-            let previousPosition = { x: 0, y: 0 };
+            let previousMousePosition = { x: 0, y: 0 };
 
-            function startDrag(x, y) { isDragging = true; previousPosition = { x, y }; }
-            function moveDrag(x, y) {
-                if (!isDragging) return;
-                featMesh.rotation.y += (x - previousPosition.x) * 0.01;
-                featMesh.rotation.x += (y - previousPosition.y) * 0.01;
-                previousPosition = { x, y };
-            }
-            function endDrag() { isDragging = false; }
-
-            // Mouse
-            canvas.addEventListener('mousedown', (e) => startDrag(e.clientX, e.clientY));
-            canvas.addEventListener('mousemove', (e) => moveDrag(e.clientX, e.clientY));
-            window.addEventListener('mouseup', endDrag);
-
-            // Touch (phone)
-            canvas.addEventListener('touchstart', (e) => {
-                if (e.touches.length === 1) startDrag(e.touches[0].clientX, e.touches[0].clientY);
-            }, { passive: true });
-            canvas.addEventListener('touchmove', (e) => {
-                if (e.touc
-hes.length === 1) moveDrag(e.touches[0].clientX, e.touches[0].clientY);
-            }, { passive: true });
-            canvas.addEventListener('touchend', endDrag);
+            canvas.addEventListener('mousedown', () => { isDragging = true; });
+            canvas.addEventListener('mousemove', (e) => {
+                if (isDragging) {
+                    const deltaMove = { x: e.clientX - previousMousePosition.x, y: e.clientY - previousMousePosition.y };
+                    featMesh.rotation.y += deltaMove.x * 0.01;
+                    featMesh.rotation.x += deltaMove.y * 0.01;
+                }
+                previousMousePosition = { x: e.clientX, y: e.clientY };
+            });
+            window.addEventListener('mouseup', () => { isDragging = false; });
 
             function animateFeat() {
                 requestAnimationFrame(animateFeat);
@@ -1335,17 +1169,14 @@ hes.length === 1) moveDrag(e.touches[0].clientX, e.touches[0].clientY);
             const canvas = document.getElementById('modal3DCanvas');
             if (!canvas) return;
 
-            const isMobile = window.innerWidth < 768 || /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-
             modalScene = new THREE.Scene();
             modalCamera = new THREE.PerspectiveCamera(50, canvas.clientWidth / canvas.clientHeight, 0.1, 100);
             modalCamera.position.z = 4;
 
-            modalRenderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: !isMobile });
+            modalRenderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
             modalRenderer.setSize(canvas.clientWidth, canvas.clientHeight);
-            modalRenderer.setPixelRatio(isMobile ? 1.15 : Math.min(window.devicePixelRatio, 2));
 
-            const geo = new THREE.DodecahedronGeometry(1.4, isMobile ? 0 : 1);
+            const geo = new THREE.DodecahedronGeometry(1.4, 1);
             const mat = new THREE.MeshStandardMaterial({
                 color: colorHex || 0xf59e0b,
                 roughness: 0.4,
@@ -1395,8 +1226,7 @@ hes.length === 1) moveDrag(e.touches[0].clientX, e.touches[0].clientY);
                         backgroundColor: 'rgba(245, 158, 11, 0.25)',
                         borderColor: '#f59e0b',
                         borderWidth: 2,
-                        pointBackgroundColor: '#dc2626
-',
+                        pointBackgroundColor: '#dc2626',
                         pointBorderColor: '#fff'
                     }]
                 },
@@ -1469,8 +1299,7 @@ hes.length === 1) moveDrag(e.touches[0].clientX, e.touches[0].clientY);
                     visibleCount++;
 
                     let heatBar = '';
-                    if (p.heatLevel >
- 0) {
+                    if (p.heatLevel > 0) {
                         heatBar = `<span class="flex gap-1 items-center">`;
                         for (let i = 0; i < 5; i++) {
                             heatBar += `<span class="w-1.5 h-2.5 rounded-full ${i < p.heatLevel ? 'bg-berbere' : 'bg-gray-700'}"></span>`;
@@ -1515,8 +1344,7 @@ hes.length === 1) moveDrag(e.touches[0].clientX, e.touches[0].clientY);
                                     </button>
                                 </div>
                             </div>
-                        <
-/div>
+                        </div>
                     `;
                     grid.innerHTML += cardHtml;
                 }
@@ -1595,8 +1423,7 @@ hes.length === 1) moveDrag(e.touches[0].clientX, e.touches[0].clientY);
 
             const weight = parseInt(document.getElementById('modalWeightSelect')?.value || '500');
             const calculatedPrice = Math.round((activeModalProduct.priceBaseETB / 500) * weight);
-            document.getElementById('modalPrice').innerText = `${calculatedPrice} E
-TB`;
+            document.getElementById('modalPrice').innerText = `${calculatedPrice} ETB`;
         }
 
         function addModalItemToCart() {
@@ -1676,8 +1503,7 @@ TB`;
                                 <h4 class="font-bold text-cream font-serif text-[11px]">${item.name}</h4>
                                 <span class="text-[10px] text-gray-400">${item.weight}g portion</span>
                             </div>
-                   
-     </div>
+                        </div>
                         <div class="flex items-center gap-2">
                             <span class="font-mono text-turmeric font-bold text-[11px]">${item.price} ETB</span>
                             <button onclick="removeFromCart(${index})" class="text-berbere hover:text-red-400 font-bold text-xs">✕</button>
@@ -1757,8 +1583,7 @@ TB`;
                 case 'nifas': fee = 200; time = '45 - 60 Mins'; break;
                 case 'kirkos': fee = 250; time = '50 - 70 Mins'; break;
                 case 'bole': fee = 280; time = '60 - 80 Mins'; break;
-                case 'arada': fee = 220; time = '45 - 65 Mins'; bre
-ak;
+                case 'arada': fee = 220; time = '45 - 65 Mins'; break;
                 case 'yeka': fee = 300; time = '60 - 90 Mins'; break;
             }
 
@@ -1795,27 +1620,6 @@ ak;
         }
 
         // --- 8. INITIALIZATION ON DOM LOAD ---
-        
-        // Keep 3D canvases sharp when phone is rotated
-        window.addEventListener('resize', () => {
-            if (heroRenderer && heroCamera) {
-                const c = document.getElementById('heroCanvas');
-                if (c) {
-                    heroCamera.aspect = c.clientWidth / c.clientHeight;
-                    heroCamera.updateProjectionMatrix();
-                    heroRenderer.setSize(c.clientWidth, c.clientHeight);
-                }
-            }
-            if (featRenderer && featCamera) {
-                const c = document.getElementById('featuredProduct3DCanvas');
-                if (c) {
-                    featCamera.aspect = c.clientWidth / c.clientHeight;
-                    featCamera.updateProjectionMatrix();
-                    featRenderer.setSize(c.clientWidth, c.clientHeight);
-                }
-            }
-        });
-
         window.addEventListener('DOMContentLoaded', () => {
             init3DHeroVisualizer();
             initFeatured3D();
