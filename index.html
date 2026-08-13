@@ -2,7 +2,10 @@
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+    <meta name="theme-color" content="#12100e">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>Zemzm Etan Bet | ዘምዘም ዕጣን ቤት - Premium Spices & Frankincense</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -81,6 +84,62 @@
             transform: translateY(-6px) rotateX(2deg) rotateY(-2deg);
             box-shadow: 0 20px 25px -5px rgba(245, 158, 11, 0.15), 0 10px 10px -5px rgba(0, 0, 0, 0.5);
         }
+
+        /* ========== PHONE / MOBILE OPTIMIZATIONS ========== */
+        html, body {
+            overflow-x: hidden;
+            -webkit-tap-highlight-color: rgba(245, 158, 11, 0.25);
+            touch-action: manipulation;
+        }
+        /* Safe area for notched phones */
+        body {
+            padding-left: env(safe-area-inset-lef
+t);
+            padding-right: env(safe-area-inset-right);
+        }
+        /* Larger touch targets */
+        button, a, .tilt-card, select, input[type="range"] {
+            min-height: 44px;
+        }
+        /* Header mobile refinements */
+        @media (max-width: 640px) {
+            header .h-20 { height: auto; min-height: 4.5rem; padding-top: 0.5rem; padding-bottom: 0.5rem; }
+            header h1 { font-size: 1rem !important; line-height: 1.25; }
+            header h1 span.text-xs { font-size: 0.65rem; padding: 0.15rem 0.4rem; }
+            #mobileMenu a { padding-top: 0.85rem; padding-bottom: 0.85rem; font-size: 1rem; }
+            /* Hero */
+            #home { min-height: 62vh !important; padding-top: 1rem; padding-bottom: 1.5rem; }
+            #home h1 { font-size: 1.85rem !important; }
+            /* Product cards & filters */
+            #productGrid { gap: 1rem; }
+            .tilt-card { padding: 1rem !important; }
+            /* Modal almost full screen on phone */
+            #productModal > div {
+                max-width: 100% !important;
+                max-height: 95vh !important;
+                margin: 0.5rem;
+                border-radius: 1.25rem !important;
+            }
+            #productModal button.absolute { width: 2.25rem; height: 2.25rem; font-size: 1rem; }
+            /* Cart drawer full width */
+            #cartDrawer > div { max-width: 100% !important; }
+            /* Charts */
+            .chart-container { height: 280px !important; }
+            /* Reduce heavy hover transforms on touch devices */
+            .tilt-card:hover {
+                transform: translateY(-3px);
+            }
+        }
+        @media (max-width: 400px) {
+            #home h1 { font-size: 1.6rem !important; }
+            header .flex.items-center.gap-3 img { width: 2.25rem; height: 2.25rem; }
+        }
+        /* Better range input for fingers */
+        input[type="range"] {
+            height: 1.5rem;
+            accent-color: #f59e0b;
+        }
+
     </style>
 </head>
 <body class="bg-espresso text-gray-200 font-sans antialiased selection:bg-turmeric selection:text-espresso">
@@ -96,7 +155,8 @@
          5. Sensory Radar Profile Analyzer powered by Chart.js with streamlined descriptions.
          6. Community & Local Trust Section with coffee ceremony heritage photography and short key stats.
          7. Interactive Bethel Location & Delivery Hub with clean map visualizer, landmarks, store hours, and subcity delivery estimation.
-         8. Interactive Product Detail Modal with photo gallery, 3D rotating visualizer, origin context, and weight/price calculator.
+         8. Interactive Product Detail Modal with photo gallery, 3D rotating visualizer, origin context, and weight/
+price calculator.
          9. Cart Drawer with local pickup vs delivery options and direct WhatsApp/Phone order launcher for +251 98 048 2885.
     -->
 
@@ -140,17 +200,18 @@
             <div class="flex items-center space-x-4">
                 <!-- Language Switcher (No Dot) -->
                 <button id="langToggleBtn" onclick="toggleLanguage()" class="px-3.5 py-1.5 rounded-full bg-panelBg border border-amber-500/30 text-xs font-semibold text-cream hover:border-turmeric transition-all shadow-sm" title="Switch Language / ቋንቋ ይቀይሩ">
-                    <span id="langLabel">አማርኛ</span>
+                    <span
+ id="langLabel">አማርኛ</span>
                 </button>
 
                 <!-- Cart Button -->
                 <button onclick="toggleCartDrawer(true)" class="relative px-3 py-2 rounded-xl bg-panelBg border border-amber-500/20 text-cream hover:bg-turmeric hover:text-espresso transition-all shadow-md flex items-center gap-2 group text-xs font-bold">
                     <span>Cart</span>
-                    <span id="cartBadge" class="bg-berbere text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full scale-0 transition-transform">0</span>
+                    <span id="cartBadge" class="bg-berbere text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full scale-0 transition-transform min-w-[18px] text-center">0</span>
                 </button>
 
                 <!-- Mobile Menu Button -->
-                <button onclick="toggleMobileMenu()" class="md:hidden p-2 text-cream text-sm font-bold border border-amber-900/40 rounded-lg">
+                <button onclick="toggleMobileMenu()" class="md:hidden min-w-[52px] min-h-[44px] px-3 py-2 text-cream text-sm font-bold border border-amber-900/40 rounded-xl active:bg-turmeric active:text-espresso transition-colors">
                     MENU
                 </button>
             </div>
@@ -188,7 +249,8 @@
                         <span class="text-transparent bg-clip-text bg-gradient-to-r from-turmeric via-amber-200 to-berbere" data-i18n="hero_heading_2">የጣዕም እና የሽታ ጥግ</span>
                     </h1>
 
-                    <p class="text-base text-amber-100/80 max-w-xl font-light leading-relaxed mx-auto lg:mx-0" data-i18n="hero_subtext">
+                    <p class="text-base text-amber-100/80 max-w-xl font-l
+ight leading-relaxed mx-auto lg:mx-0" data-i18n="hero_subtext">
                         Authentic Ethiopian spices, ground Shiro, and pure Ogaden frankincense tears. Located in front of Awash Bank, Bethel Street.
                     </p>
 
@@ -234,7 +296,8 @@
                         
                         <!-- 3D Interactive Canvas -->
                         <div class="h-44 w-full relative my-1 flex items-center justify-center">
-                            <canvas id="featuredProduct3DCanvas" class="w-full h-full cursor-grab active:cursor-grabbing"></canvas>
+             
+               <canvas id="featuredProduct3DCanvas" class="w-full h-full cursor-grab active:cursor-grabbing"></canvas>
                             <div class="absolute bottom-1 right-2 text-[10px] text-amber-200/50 italic">
                                 Drag to rotate 3D view
                             </div>
@@ -275,7 +338,8 @@
                 </div>
 
                 <!-- Pillar 2: Etan & Resins -->
-                <div onclick="filterByCategory('etan')" class="cursor-pointer tilt-card p-5 rounded-2xl bg-cardBg border border-amber-900/30 hover:border-turmeric/50 transition-all text-center space-y-3 group">
+                <div onclick="filterByCategory('etan')" class="cursor-pointer tilt-card p-5 rounded-2xl bg-cardBg border border-amber-900/30 hover:border-turmeric/50 transition-all text-center s
+pace-y-3 group">
                     <img src="https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=400&q=80" alt="Incense Resins" class="w-20 h-20 mx-auto rounded-full object-cover border-2 border-turmeric/40 shadow-xl group-hover:scale-105 transition-transform">
                     <h3 class="text-lg font-serif font-bold text-cream" data-i18n="cat_2_title">Incense & Resins (ዕጣን እና ከረቤ)</h3>
                     <p class="text-xs text-amber-100/70 leading-relaxed" data-i18n="cat_2_desc">Frankincense tears, red resin & scented myrrh.</p>
@@ -314,7 +378,8 @@
                     <!-- Category Tabs -->
                     <div>
                         <label class="block text-xs font-semibold text-amber-200/80 uppercase tracking-wider mb-2" data-i18n="label_category">Category Filter</label>
-                        <div class="flex flex-wrap gap-1.5" id="categoryButtons">
+                        <div class="flex flex-wrap gap-1.5"
+ id="categoryButtons">
                             <button onclick="setCategoryFilter('all')" class="cat-btn active px-3 py-1 rounded-lg text-xs font-bold bg-turmeric text-espresso" data-cat="all" data-i18n="filter_all">All</button>
                             <button onclick="setCategoryFilter('spices')" class="cat-btn px-3 py-1 rounded-lg text-xs font-medium bg-panelBg text-gray-300 hover:text-turmeric border border-amber-900/30" data-cat="spices" data-i18n="filter_spices">Spices</button>
                             <button onclick="setCategoryFilter('etan')" class="cat-btn px-3 py-1 rounded-lg text-xs font-medium bg-panelBg text-gray-300 hover:text-turmeric border border-amber-900/30" data-cat="etan" data-i18n="filter_etan">Etan</button>
@@ -359,7 +424,8 @@
                     
                     <!-- Left Column: Controls -->
                     <div class="lg:col-span-6 space-y-5">
-                        <div class="inline-block px-3 py-1 rounded-full bg-turmeric/10 border border-turmeric/30 text-turmeric text-xs font-bold">
+                        <div class="inline-block px-3 py-1 rounded-full bg-turmeric/10 border border-turmeric/30 text-turmeric text-xs font-
+bold">
                             Sensory Profile Analysis
                         </div>
                         <h2 class="text-2xl sm:text-3xl font-serif font-bold text-cream" data-i18n="sensory_title">
@@ -410,7 +476,8 @@
                 <!-- Heritage Card -->
                 <div class="lg:col-span-7 p-6 rounded-3xl bg-cardBg border border-amber-900/30 space-y-4">
                     <div class="flex items-center gap-3">
-                        <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=150&q=80" alt="Coffee Ceremony" class="w-12 h-12 rounded-xl object-cover border border-amber-500/40 shadow-md">
+                        <img src="https://images.unsplash.com
+/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=150&q=80" alt="Coffee Ceremony" class="w-12 h-12 rounded-xl object-cover border border-amber-500/40 shadow-md">
                         <h3 class="text-xl font-serif font-bold text-cream" data-i18n="heritage_title">Coffee & Incense Heritage</h3>
                     </div>
                     <p class="text-xs sm:text-sm text-amber-100/80 leading-relaxed" data-i18n="heritage_desc">
@@ -460,7 +527,8 @@
         <section id="location" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-xl mx-auto mb-8 space-y-1">
                 <h2 class="text-2xl sm:text-3xl font-bold font-serif text-cream" data-i18n="loc_section_title">Visit Our Bethel Store</h2>
-                <p class="text-amber-200/70 text-xs sm:text-sm" data-i18n="loc_section_sub">Front of Awash Bank, Bethel Street, Kolfe Keranyo K07, Addis Ababa.</p>
+                <p class="text-amber-200/70 text-xs sm:text-sm" data-i18n="loc_section_sub">Front of Awash Bank, Bethel Street, Kolfe Keranyo K07, 
+Addis Ababa.</p>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
@@ -514,7 +582,8 @@
                 </div>
 
                 <!-- Subcity Delivery Estimator Widget -->
-                <div class="lg:col-span-5 p-5 rounded-3xl bg-panelBg border border-amber-500/20 space-y-4">
+                <div class="lg:col-span-5 p-5
+ rounded-3xl bg-panelBg border border-amber-500/20 space-y-4">
                     <h3 class="text-lg font-serif font-bold text-cream" data-i18n="del_calculator_title">Addis Ababa Delivery</h3>
                     <p class="text-xs text-amber-100/70" data-i18n="del_calculator_desc">Select subcity to calculate dispatch fees from Bethel.</p>
 
@@ -566,7 +635,8 @@
             <div>
                 <h4 class="text-cream font-bold mb-2 uppercase tracking-wider text-[11px]" data-i18n="footer_links">Quick Navigation</h4>
                 <ul class="space-y-1.5">
-                    <li><a href="#home" class="hover:text-turmeric transition-colors">Home</a></li>
+                    <li><a href="#home" class="hover
+:text-turmeric transition-colors">Home</a></li>
                     <li><a href="#catalog" class="hover:text-turmeric transition-colors">Spice Catalog</a></li>
                     <li><a href="#sensory" class="hover:text-turmeric transition-colors">Sensory Matrix</a></li>
                     <li><a href="#location" class="hover:text-turmeric transition-colors">Bethel Location</a></li>
@@ -629,7 +699,8 @@
                            target="_blank"
                            rel="noopener noreferrer"
                            aria-label="Facebook"
-                           class="w-9 h-9 rounded-lg bg-panelBg border border-amber-900/40 flex items-center justify-center text-gray-400 hover:text-turmeric hover:border-turmeric transition-all">
+                           class="w-9 h
+-9 rounded-lg bg-panelBg border border-amber-900/40 flex items-center justify-center text-gray-400 hover:text-turmeric hover:border-turmeric transition-all">
                             <i class="fa-brands fa-facebook-f"></i>
                         </a>
 
@@ -683,7 +754,8 @@
                     <!-- Portion Selector -->
                     <div class="space-y-1">
                         <label class="block text-[11px] font-semibold text-amber-200/80 uppercase" data-i18n="label_portion">Select Portion Weight</label>
-                        <select id="modalWeightSelect" onchange="updateModalPrice()" class="w-full px-3 py-1.5 rounded-xl bg-espresso border border-amber-900/40 text-cream text-xs focus:outline-none focus:border-turmeric">
+                        <select id="modalWeightSelect" onchange="updateModalPrice()" class="w-full px-3 py-1.5 rounded-xl bg-espresso border bord
+er-amber-900/40 text-cream text-xs focus:outline-none focus:border-turmeric">
                             <option value="250">250 grams</option>
                             <option value="500" selected>500 grams</option>
                             <option value="1000">1.0 Kilogram</option>
@@ -741,7 +813,8 @@
                         <span data-i18n="cart_dispatch">Estimated Local Dispatch</span>
                         <span id="cartDispatch" class="font-mono text-cream font-bold">100 ETB</span>
                     </div>
-                    <div class="flex justify-between text-base font-bold text-turmeric pt-2 border-t border-amber-900/30">
+                    <div class="flex just
+ify-between text-base font-bold text-turmeric pt-2 border-t border-amber-900/30">
                         <span data-i18n="cart_total">Total Order</span>
                         <span id="cartTotal" class="font-mono">100 ETB</span>
                     </div>
@@ -813,7 +886,8 @@
                 heatLevel: 2,
                 origin: 'Debre Birhan',
                 pairing: 'Shiro Tegabino',
-                badge: 'Essential',
+                badge: 'Es
+sential',
                 colorHex: 0xd97706,
                 imageUrl: 'https://images.unsplash.com/photo-1541544741938-0af808871cc0?auto=format&fit=crop&w=600&q=80',
                 sensory: { aroma: 70, heat: 40, earthiness: 90, warmth: 80, sweetResin: 20 }
@@ -886,7 +960,8 @@
                 id: 'red_etan',
                 category: 'etan',
                 name_en: 'Red Scented Resin Etan',
-                name_am: 'ቀይ የጣን ዕጣን',
+                n
+ame_am: 'ቀይ የጣን ዕጣን',
                 desc_en: 'Rich amber scented resin producing sweet aromatic smoke.',
                 desc_am: 'ቀይ የጣን ዕጣን ለደስ የሚል መዓዛ።',
                 priceBaseETB: 420,
@@ -949,7 +1024,8 @@
                 heritage_desc: "Our frankincense tears are harvested from eastern highlands for authentic, clean-burning coffee ceremonies.",
                 stat_natural: "Pure Resins",
                 stat_rating: "Store Rating",
-                stat_hub: "Local Hub",
+          
+      stat_hub: "Local Hub",
                 loc_section_title: "Visit Our Bethel Store",
                 loc_section_sub: "Front of Awash Bank, Bethel Street, Kolfe Keranyo K07, Addis Ababa.",
                 del_calculator_title: "Addis Ababa Delivery",
@@ -1014,7 +1090,8 @@
                 sensory_aroma_note: "መነሻ ቦታ",
                 sensory_usage: "ለ ምን ይሆናል",
                 heritage_title: "የቡና እና የዕጣን ባህል",
-                heritage_desc: "ዘምዘም ዕጣን ቤት ለቡና ስነስርዓት የሚሆኑ ንጹህ የኦጋዴን ዕጣኖችን ያቀርባል።",
+                heritage_desc: "
+ዘምዘም ዕጣን ቤት ለቡና ስነስርዓት የሚሆኑ ንጹህ የኦጋዴን ዕጣኖችን ያቀርባል።",
                 stat_natural: "ንጹህ ዕጣን",
                 stat_rating: "የደንበኞች አስተያየት",
                 stat_hub: "ቤተል መደብር",
@@ -1093,7 +1170,8 @@
             particleSystem = new THREE.Points(geometry, material);
             heroScene.add(particleSystem);
 
-            const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
+            const ambientLight = new TH
+REE.AmbientLight(0xffffff, 0.8);
             heroScene.add(ambientLight);
 
             window.addEventListener('mousemove', (e) => {
@@ -1178,7 +1256,8 @@
 
             const geo = new THREE.DodecahedronGeometry(1.4, 1);
             const mat = new THREE.MeshStandardMaterial({
-                color: colorHex || 0xf59e0b,
+       
+         color: colorHex || 0xf59e0b,
                 roughness: 0.4,
                 metalness: 0.1
             });
@@ -1267,7 +1346,8 @@
             sensoryChart.update();
 
             const noteVal = document.getElementById('sensoryNoteVal');
-            const usageVal = document.getElementById('sensoryUsageVal');
+          
+  const usageVal = document.getElementById('sensoryUsageVal');
             if (noteVal) noteVal.innerText = product.origin;
             if (usageVal) usageVal.innerText = product.pairing;
         }
@@ -1329,7 +1409,8 @@
                                 </div>
                             </div>
 
-                            <div class="pt-2 border-t border-amber-900/30 space-y-2">
+                            <div class="pt-2 
+border-t border-amber-900/30 space-y-2">
                                 <div class="flex items-center justify-between">
                                     <span class="text-[11px] text-gray-400">${currentLang === 'am' ? 'ዋጋ' : 'Price'}</span>
                                     <span class="text-base font-bold text-turmeric font-mono">${p.priceBaseETB} ETB</span>
@@ -1400,7 +1481,8 @@
             document.getElementById('modalTitle').innerText = currentLang === 'am' ? product.name_am : product.name_en;
             document.getElementById('modalDesc').innerText = currentLang === 'am' ? product.desc_am : product.desc_en;
             document.getElementById('modalCategoryBadge').innerText = product.badge;
-            document.getElementById('modalOrigin').innerText = product.origin;
+            document.getElementById('modalOrigin').inn
+erText = product.origin;
             document.getElementById('modalPairing').innerText = product.pairing;
 
             const modalImg = document.getElementById('modalProductImg');
@@ -1495,7 +1577,8 @@
 
             cart.forEach((item, index) => {
                 subtotal += item.price;
-                cartItemsList.innerHTML += `
+                cartItemsList.i
+nnerHTML += `
                     <div class="p-3 rounded-xl bg-panelBg border border-amber-900/30 flex items-center justify-between gap-2 text-xs">
                         <div class="flex items-center gap-2.5">
                             <img src="${item.imageUrl}" alt="${item.name}" class="w-9 h-9 rounded-lg object-cover border border-amber-900/40">
@@ -1578,7 +1661,8 @@
             let fee = 100;
             let time = '20 - 40 Mins';
 
-            switch (val) {
+            switch (val) 
+{
                 case 'kolfe': fee = 100; time = '20 - 40 Mins'; break;
                 case 'nifas': fee = 200; time = '45 - 60 Mins'; break;
                 case 'kirkos': fee = 250; time = '50 - 70 Mins'; break;
