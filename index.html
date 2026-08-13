@@ -1,0 +1,1566 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zemzm Etan Bet | ዘምዘም ዕጣን ቤት - Premium Spices & Frankincense</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Three.js for 3D Visualizer -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- Chart.js for Sensory Profiles -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        espresso: '#12100e',
+                        cardBg: '#1c1815',
+                        panelBg: '#26201b',
+                        turmeric: '#f59e0b',
+                        berbere: '#dc2626',
+                        clove: '#8f4f22',
+                        cream: '#fef3c7',
+                        goldAccent: '#d97706',
+                    },
+                    fontFamily: {
+                        serif: ['Georgia', 'serif'],
+                        sans: ['system-ui', '-apple-system', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom styled chart containers & canvas wrappers */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 550px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 380px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 360px;
+            }
+        }
+        /* Custom scrollbar for dark modern luxury theme */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #12100e;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #26201b;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #f59e0b;
+        }
+        /* Glassmorphism subtle utility */
+        .glass-panel {
+            background: rgba(28, 24, 21, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(245, 158, 11, 0.15);
+        }
+        /* 3D hover tilt simulation class */
+        .tilt-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transform-style: preserve-3d;
+        }
+        .tilt-card:hover {
+            transform: translateY(-6px) rotateX(2deg) rotateY(-2deg);
+            box-shadow: 0 20px 25px -5px rgba(245, 158, 11, 0.15), 0 10px 10px -5px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+<body class="bg-espresso text-gray-200 font-sans antialiased selection:bg-turmeric selection:text-espresso">
+
+    <!-- Chosen Palette: Modern Dark-Mode Luxury Warm Earth (Deep Espresso #12100e, Card Charcoal #1c1815, Turmeric Gold #f59e0b, Berbere Red #dc2626, Cream #fef3c7) -->
+
+    <!-- Application Structure Plan:
+         Designed structure: A streamlined single-page e-commerce & brand experience application tailored for Zemzm Etan Bet in Bethel, Addis Ababa.
+         1. Global Header with sticky navigation, cart indicator, real photo brand mark, clean lang toggle (dots removed).
+         2. Hero Header with real-time 3D Three.js WebGL background, high-resolution photography cards, concise stats, and quick CTA.
+         3. Core Category Pillars with clean, minimal copy and authentic photos for Spices, Frankincense, and Herbs.
+         4. Dynamic Interactive Catalog featuring concise labels, price filter in ETB, heat index filter, quick search, dynamic product cards, modal triggers, and cart additions.
+         5. Sensory Radar Profile Analyzer powered by Chart.js with streamlined descriptions.
+         6. Community & Local Trust Section with coffee ceremony heritage photography and short key stats.
+         7. Interactive Bethel Location & Delivery Hub with clean map visualizer, landmarks, store hours, and subcity delivery estimation.
+         8. Interactive Product Detail Modal with photo gallery, 3D rotating visualizer, origin context, and weight/price calculator.
+         9. Cart Drawer with local pickup vs delivery options and direct WhatsApp/Phone order launcher for +251 98 048 2885.
+    -->
+
+    <!-- Visualization & Content Choices:
+         - Visual Dot Indicators Removed: Glowing dot icons on badges, headers, status indicators, and pins removed for a cleaner minimal look.
+         - Text Conciseness: Trimmed all long paragraphs, descriptions, and dictionary strings to key impactful phrases.
+         - Real High-Definition Photography -> Sourced from curated Unsplash imagery for authentic Ethiopian spices, frankincense resins, and traditional coffee ceremonies.
+         - Spice/Incense Dynamic Visuals -> WebGL 3D Canvas (Three.js) -> Floating particles & rotating 3D crystal polyhedron.
+         - Spice Sensory Profiles -> Radar Chart -> Chart.js -> Interactive 5-axis sensory comparison.
+         - Interactive Map -> Styled HTML/CSS Canvas grid layout with distance markers & landmark pin pointers.
+         - CONFIRMATION: NO SVG graphics used. NO Mermaid JS used.
+    -->
+
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <!-- NAVIGATION HEADER -->
+    <header class="sticky top-0 z-40 glass-panel border-b border-amber-900/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <img src="https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=120&q=80" alt="Zemzm Emblem" class="w-10 h-10 rounded-full object-cover border-2 border-turmeric/60 shadow-lg shadow-amber-500/20 group-hover:scale-105 transition-transform">
+                <div>
+                    <h1 class="text-xl font-bold tracking-wide text-cream font-serif flex items-center gap-2">
+                        <span>ዘምዘም ዕጣን ቤት</span>
+                        <span class="text-xs px-2 py-0.5 rounded bg-turmeric/20 text-turmeric font-sans font-normal border border-turmeric/30">Bethel</span>
+                    </h1>
+                    <p class="text-xs text-amber-200/70 tracking-widest uppercase" data-i18n="brand_subtitle">Zemzm Spice & Frankincense</p>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium">
+                <a href="#home" class="text-amber-100 hover:text-turmeric transition-colors" data-i18n="nav_home">Home</a>
+                <a href="#categories" class="text-gray-300 hover:text-turmeric transition-colors" data-i18n="nav_categories">Categories</a>
+                <a href="#catalog" class="text-gray-300 hover:text-turmeric transition-colors" data-i18n="nav_shop">Shop</a>
+                <a href="#sensory" class="text-gray-300 hover:text-turmeric transition-colors" data-i18n="nav_sensory">Flavor Profile</a>
+                <a href="#location" class="text-gray-300 hover:text-turmeric transition-colors" data-i18n="nav_location">Visit Us</a>
+            </nav>
+
+            <!-- Actions: Lang Toggle & Cart -->
+            <div class="flex items-center space-x-4">
+                <!-- Language Switcher (No Dot) -->
+                <button id="langToggleBtn" onclick="toggleLanguage()" class="px-3.5 py-1.5 rounded-full bg-panelBg border border-amber-500/30 text-xs font-semibold text-cream hover:border-turmeric transition-all shadow-sm" title="Switch Language / ቋንቋ ይቀይሩ">
+                    <span id="langLabel">አማርኛ</span>
+                </button>
+
+                <!-- Cart Button -->
+                <button onclick="toggleCartDrawer(true)" class="relative px-3 py-2 rounded-xl bg-panelBg border border-amber-500/20 text-cream hover:bg-turmeric hover:text-espresso transition-all shadow-md flex items-center gap-2 group text-xs font-bold">
+                    <span>Cart</span>
+                    <span id="cartBadge" class="bg-berbere text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full scale-0 transition-transform">0</span>
+                </button>
+
+                <!-- Mobile Menu Button -->
+                <button onclick="toggleMobileMenu()" class="md:hidden p-2 text-cream text-sm font-bold border border-amber-900/40 rounded-lg">
+                    MENU
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-cardBg border-b border-amber-900/40 px-4 pt-2 pb-6 space-y-3">
+            <a href="#home" onclick="toggleMobileMenu()" class="block py-2 text-amber-100 hover:text-turmeric border-b border-panelBg" data-i18n="nav_home">Home</a>
+            <a href="#categories" onclick="toggleMobileMenu()" class="block py-2 text-gray-300 hover:text-turmeric border-b border-panelBg" data-i18n="nav_categories">Categories</a>
+            <a href="#catalog" onclick="toggleMobileMenu()" class="block py-2 text-gray-300 hover:text-turmeric border-b border-panelBg" data-i18n="nav_shop">Shop</a>
+            <a href="#sensory" onclick="toggleMobileMenu()" class="block py-2 text-gray-300 hover:text-turmeric border-b border-panelBg" data-i18n="nav_sensory">Flavor Profile</a>
+            <a href="#location" onclick="toggleMobileMenu()" class="block py-2 text-gray-300 hover:text-turmeric" data-i18n="nav_location">Visit Us</a>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="space-y-20 pb-16">
+
+        <!-- SECTION 1: HERO HEADER WITH 3D CANVAS -->
+        <section id="home" class="relative min-h-[75vh] flex items-center overflow-hidden pt-6 pb-10">
+            <!-- 3D WebGL Canvas Background -->
+            <div class="absolute inset-0 z-0">
+                <canvas id="heroCanvas" class="w-full h-full opacity-60"></canvas>
+                <div class="absolute inset-0 bg-gradient-to-t from-espresso via-espresso/60 to-transparent"></div>
+            </div>
+
+            <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                <div class="lg:col-span-7 space-y-5 text-center lg:text-left">
+                    <div class="inline-block px-3.5 py-1 rounded-full bg-turmeric/10 border border-turmeric/30 text-turmeric text-xs font-semibold uppercase tracking-wider">
+                        <span>5.0 ★ Google Store</span>
+                    </div>
+                    
+                    <h1 class="text-4xl sm:text-6xl font-extrabold text-cream leading-tight font-serif">
+                        <span data-i18n="hero_heading_1">Aroma. Flavor. Tradition.</span><br/>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-turmeric via-amber-200 to-berbere" data-i18n="hero_heading_2">የጣዕም እና የሽታ ጥግ</span>
+                    </h1>
+
+                    <p class="text-base text-amber-100/80 max-w-xl font-light leading-relaxed mx-auto lg:mx-0" data-i18n="hero_subtext">
+                        Authentic Ethiopian spices, ground Shiro, and pure Ogaden frankincense tears. Located in front of Awash Bank, Bethel Street.
+                    </p>
+
+                    <!-- Store Stats (No Dots) -->
+                    <div class="pt-1 flex flex-wrap justify-center lg:justify-start gap-3 text-xs">
+                        <div class="px-3.5 py-2 rounded-xl bg-cardBg/90 border border-amber-900/40 text-amber-200" data-i18n="stat_location">
+                            Bethel, Kolfe Keranyo K07
+                        </div>
+                        <div class="px-3.5 py-2 rounded-xl bg-cardBg/90 border border-amber-900/40 text-amber-200" data-i18n="stat_hours">
+                            Open Daily till 9:30 PM
+                        </div>
+                        <div class="px-3.5 py-2 rounded-xl bg-cardBg/90 border border-amber-900/40 flex items-center gap-1.5">
+                            <span class="text-amber-400 font-bold">TEL</span>
+                            <a href="tel:0980482885" class="text-turmeric font-bold hover:underline">098 048 2885</a>
+                        </div>
+                    </div>
+
+                    <!-- Call to Action Buttons -->
+                    <div class="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3">
+                        <a href="#catalog" class="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-gradient-to-r from-turmeric to-amber-600 text-espresso font-bold text-sm shadow-xl shadow-turmeric/20 hover:scale-105 transition-all text-center" data-i18n="cta_shop">
+                            Explore Collection →
+                        </a>
+                        <a href="#sensory" class="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-panelBg border border-amber-500/30 text-cream font-semibold text-sm hover:bg-cardBg hover:border-turmeric transition-all text-center" data-i18n="cta_sensory">
+                            Flavor Profiles
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 3D Feature Display Card -->
+                <div class="lg:col-span-5 relative">
+                    <div class="tilt-card p-5 rounded-3xl bg-gradient-to-b from-cardBg to-panelBg border border-amber-500/20 shadow-2xl relative overflow-hidden group">
+                        <div class="absolute -right-10 -top-10 w-40 h-40 bg-turmeric/10 rounded-full blur-3xl"></div>
+                        
+                        <div class="flex justify-between items-center mb-3">
+                            <div class="flex items-center gap-2.5">
+                                <img src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=120&q=80" alt="Special Berbere" class="w-9 h-9 rounded-lg object-cover border border-amber-500/40">
+                                <span class="px-2.5 py-0.5 rounded-full bg-berbere/20 text-berbere text-xs font-bold border border-berbere/30" data-i18n="badge_featured">
+                                    Signature Blend
+                                </span>
+                            </div>
+                            <span class="text-amber-400 text-xs font-mono">100% Pure</span>
+                        </div>
+                        
+                        <!-- 3D Interactive Canvas -->
+                        <div class="h-44 w-full relative my-1 flex items-center justify-center">
+                            <canvas id="featuredProduct3DCanvas" class="w-full h-full cursor-grab active:cursor-grabbing"></canvas>
+                            <div class="absolute bottom-1 right-2 text-[10px] text-amber-200/50 italic">
+                                Drag to rotate 3D view
+                            </div>
+                        </div>
+
+                        <div class="space-y-2 text-center sm:text-left mt-1">
+                            <h3 class="text-xl font-serif font-bold text-cream" data-i18n="featured_title">Special Mekelesha & Pure Berbere</h3>
+                            <p class="text-xs text-amber-200/70" data-i18n="featured_desc">Sun-dried red peppers pounded with korarima, garlic, and herbs.</p>
+                            <div class="flex items-center justify-between pt-2 border-t border-amber-900/40">
+                                <div>
+                                    <span class="text-xs text-gray-400 block" data-i18n="label_price_from">Price from</span>
+                                    <span class="text-lg font-bold text-turmeric font-mono">450 ETB <span class="text-xs font-normal text-amber-200/70">/ 500g</span></span>
+                                </div>
+                                <button onclick="openProductModal('berbere_special')" class="px-3.5 py-1.5 rounded-lg bg-turmeric text-espresso font-bold text-xs hover:bg-amber-400 transition-colors" data-i18n="btn_quick_view">
+                                    Quick View
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: CORE CATEGORIES -->
+        <section id="categories" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-xl mx-auto mb-10 space-y-2">
+                <h2 class="text-2xl sm:text-3xl font-bold font-serif text-cream" data-i18n="cat_section_title">Our Collections</h2>
+                <p class="text-amber-200/70 text-xs sm:text-sm" data-i18n="cat_section_sub">Selected, ground, and preserved for authentic aroma.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Pillar 1: Spices -->
+                <div onclick="filterByCategory('spices')" class="cursor-pointer tilt-card p-5 rounded-2xl bg-cardBg border border-amber-900/30 hover:border-turmeric/50 transition-all text-center space-y-3 group">
+                    <img src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=400&q=80" alt="Cooking Spices" class="w-20 h-20 mx-auto rounded-full object-cover border-2 border-berbere/40 shadow-xl group-hover:scale-105 transition-transform">
+                    <h3 class="text-lg font-serif font-bold text-cream" data-i18n="cat_1_title">Cooking Spices (ቅመማ ቅመም)</h3>
+                    <p class="text-xs text-amber-100/70 leading-relaxed" data-i18n="cat_1_desc">Berbere, Shiro, Mitmita, Korarima & Mekelesha.</p>
+                    <span class="inline-block text-xs text-turmeric font-semibold group-hover:translate-x-1 transition-transform" data-i18n="btn_explore_cat">Browse Spices →</span>
+                </div>
+
+                <!-- Pillar 2: Etan & Resins -->
+                <div onclick="filterByCategory('etan')" class="cursor-pointer tilt-card p-5 rounded-2xl bg-cardBg border border-amber-900/30 hover:border-turmeric/50 transition-all text-center space-y-3 group">
+                    <img src="https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=400&q=80" alt="Incense Resins" class="w-20 h-20 mx-auto rounded-full object-cover border-2 border-turmeric/40 shadow-xl group-hover:scale-105 transition-transform">
+                    <h3 class="text-lg font-serif font-bold text-cream" data-i18n="cat_2_title">Incense & Resins (ዕጣን እና ከረቤ)</h3>
+                    <p class="text-xs text-amber-100/70 leading-relaxed" data-i18n="cat_2_desc">Frankincense tears, red resin & scented myrrh.</p>
+                    <span class="inline-block text-xs text-turmeric font-semibold group-hover:translate-x-1 transition-transform" data-i18n="btn_explore_cat">Browse Etan →</span>
+                </div>
+
+                <!-- Pillar 3: Natural Herbs -->
+                <div onclick="filterByCategory('herbs')" class="cursor-pointer tilt-card p-5 rounded-2xl bg-cardBg border border-amber-900/30 hover:border-turmeric/50 transition-all text-center space-y-3 group">
+                    <img src="https://images.unsplash.com/photo-1509358271058-acd22cc93898?auto=format&fit=crop&w=400&q=80" alt="Herbs and Seeds" class="w-20 h-20 mx-auto rounded-full object-cover border-2 border-emerald-500/40 shadow-xl group-hover:scale-105 transition-transform">
+                    <h3 class="text-lg font-serif font-bold text-cream" data-i18n="cat_3_title">Herbs & Seeds (ባህላዊ እፅዋት)</h3>
+                    <p class="text-xs text-amber-100/70 leading-relaxed" data-i18n="cat_3_desc">Black Cumin (Tikur Azmud), Koseret & Rue.</p>
+                    <span class="inline-block text-xs text-turmeric font-semibold group-hover:translate-x-1 transition-transform" data-i18n="btn_explore_cat">Browse Herbs →</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: DYNAMIC INTERACTIVE SHOP / CATALOG -->
+        <section id="catalog" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-6 gap-4">
+                <div>
+                    <h2 class="text-2xl sm:text-3xl font-bold font-serif text-cream" data-i18n="shop_title">Store Catalog</h2>
+                    <p class="text-amber-200/70 text-xs sm:text-sm" data-i18n="shop_subtitle">Filter by category, heat, or search by name.</p>
+                </div>
+
+                <!-- Search Bar -->
+                <div class="relative w-full md:w-64">
+                    <input type="text" id="searchInput" onkeyup="filterProducts()" placeholder="Search spices or etan..." class="w-full pl-4 pr-10 py-2 rounded-xl bg-cardBg border border-amber-900/40 text-cream text-xs focus:outline-none focus:border-turmeric transition-colors placeholder:text-gray-500">
+                    <span class="absolute right-3 top-2.5 text-[10px] font-bold text-gray-500 uppercase tracking-widest">SEARCH</span>
+                </div>
+            </div>
+
+            <!-- Controls Panel: Filters & Sorting -->
+            <div class="p-5 rounded-2xl bg-cardBg border border-amber-900/30 mb-6 space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-5 items-center">
+                    
+                    <!-- Category Tabs -->
+                    <div>
+                        <label class="block text-xs font-semibold text-amber-200/80 uppercase tracking-wider mb-2" data-i18n="label_category">Category Filter</label>
+                        <div class="flex flex-wrap gap-1.5" id="categoryButtons">
+                            <button onclick="setCategoryFilter('all')" class="cat-btn active px-3 py-1 rounded-lg text-xs font-bold bg-turmeric text-espresso" data-cat="all" data-i18n="filter_all">All</button>
+                            <button onclick="setCategoryFilter('spices')" class="cat-btn px-3 py-1 rounded-lg text-xs font-medium bg-panelBg text-gray-300 hover:text-turmeric border border-amber-900/30" data-cat="spices" data-i18n="filter_spices">Spices</button>
+                            <button onclick="setCategoryFilter('etan')" class="cat-btn px-3 py-1 rounded-lg text-xs font-medium bg-panelBg text-gray-300 hover:text-turmeric border border-amber-900/30" data-cat="etan" data-i18n="filter_etan">Etan</button>
+                            <button onclick="setCategoryFilter('herbs')" class="cat-btn px-3 py-1 rounded-lg text-xs font-medium bg-panelBg text-gray-300 hover:text-turmeric border border-amber-900/30" data-cat="herbs" data-i18n="filter_herbs">Herbs</button>
+                        </div>
+                    </div>
+
+                    <!-- Heat Level Filter Slider -->
+                    <div>
+                        <div class="flex justify-between items-center mb-1.5">
+                            <label class="text-xs font-semibold text-amber-200/80 uppercase tracking-wider" data-i18n="label_heat">Max Heat Level</label>
+                            <span id="heatValDisplay" class="text-xs font-bold text-berbere">All Spice Levels</span>
+                        </div>
+                        <input type="range" id="heatRange" min="0" max="5" value="5" oninput="filterProducts()" class="w-full accent-berbere cursor-pointer">
+                    </div>
+
+                    <!-- Price Filter Slider -->
+                    <div>
+                        <div class="flex justify-between items-center mb-1.5">
+                            <label class="text-xs font-semibold text-amber-200/80 uppercase tracking-wider" data-i18n="label_price_limit">Max Price (ETB)</label>
+                            <span id="priceValDisplay" class="text-xs font-bold text-turmeric font-mono">1000 ETB</span>
+                        </div>
+                        <input type="range" id="priceRange" min="100" max="1000" step="50" value="1000" oninput="filterProducts()" class="w-full accent-turmeric cursor-pointer">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dynamic Product Grid -->
+            <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                <!-- Javascript dynamic products -->
+            </div>
+
+            <div id="noProductsMsg" class="hidden text-center py-10 text-gray-400 text-xs">
+                <p data-i18n="msg_no_products">No items match your selected filters.</p>
+            </div>
+        </section>
+
+        <!-- SECTION 4: SENSORY AROMA & SPICE RADAR ANALYZER -->
+        <section id="sensory" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="p-6 sm:p-10 rounded-3xl bg-gradient-to-br from-cardBg via-panelBg to-espresso border border-amber-500/20 shadow-2xl">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    
+                    <!-- Left Column: Controls -->
+                    <div class="lg:col-span-6 space-y-5">
+                        <div class="inline-block px-3 py-1 rounded-full bg-turmeric/10 border border-turmeric/30 text-turmeric text-xs font-bold">
+                            Sensory Profile Analysis
+                        </div>
+                        <h2 class="text-2xl sm:text-3xl font-serif font-bold text-cream" data-i18n="sensory_title">
+                            Aroma & Spice Matrix
+                        </h2>
+                        <p class="text-xs sm:text-sm text-amber-100/80 leading-relaxed" data-i18n="sensory_desc">
+                            Select a product to inspect its aroma, heat, earthiness, warmth, and resin values.
+                        </p>
+
+                        <!-- Product Selector -->
+                        <div class="space-y-2">
+                            <label class="block text-xs font-semibold text-amber-200/80 uppercase tracking-wider" data-i18n="label_select_sensory">Select Product</label>
+                            <select id="sensoryProductSelect" onchange="updateSensoryChart()" class="w-full px-3.5 py-2.5 rounded-xl bg-espresso border border-amber-500/30 text-cream text-xs focus:outline-none focus:border-turmeric">
+                                <option value="berbere_special">Special Berbere (ልዩ በርበሬ)</option>
+                                <option value="etan_white">White Ogaden Frankincense (ነጭ ዕጣን)</option>
+                                <option value="shiro_blend">Traditional Shiro Powder (ሽሮ እህል)</option>
+                                <option value="kerbe_myrrh">Ogaden Myrrh / Kerbe (ከረቤ)</option>
+                                <option value="mekelesha">Mekelesha Finishing Spice (መከለሻ)</option>
+                            </select>
+                        </div>
+
+                        <!-- Highlights -->
+                        <div id="sensoryStats" class="grid grid-cols-2 gap-3 pt-1">
+                            <div class="p-3 rounded-xl bg-espresso/60 border border-amber-900/30">
+                                <span class="text-[10px] text-gray-400 block" data-i18n="sensory_aroma_note">Origin</span>
+                                <span id="sensoryNoteVal" class="text-xs font-bold text-turmeric font-serif">Gojjam & Bali Highlands</span>
+                            </div>
+                            <div class="p-3 rounded-xl bg-espresso/60 border border-amber-900/30">
+                                <span class="text-[10px] text-gray-400 block" data-i18n="sensory_usage">Recommended Use</span>
+                                <span id="sensoryUsageVal" class="text-xs font-bold text-cream">Doro Wat, Key Wat, Stews</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Chart.js Container -->
+                    <div class="lg:col-span-6 flex justify-center">
+                        <div class="chart-container w-full bg-espresso/40 p-3 rounded-2xl border border-amber-900/40">
+                            <canvas id="sensoryRadarChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: LOCAL TRUST & COFFEE CEREMONY HERITAGE -->
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                <!-- Heritage Card -->
+                <div class="lg:col-span-7 p-6 rounded-3xl bg-cardBg border border-amber-900/30 space-y-4">
+                    <div class="flex items-center gap-3">
+                        <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=150&q=80" alt="Coffee Ceremony" class="w-12 h-12 rounded-xl object-cover border border-amber-500/40 shadow-md">
+                        <h3 class="text-xl font-serif font-bold text-cream" data-i18n="heritage_title">Coffee & Incense Heritage</h3>
+                    </div>
+                    <p class="text-xs sm:text-sm text-amber-100/80 leading-relaxed" data-i18n="heritage_desc">
+                        Our frankincense tears are harvested from eastern highlands for authentic, clean-burning coffee ceremonies without synthetic additives.
+                    </p>
+                    
+                    <div class="grid grid-cols-3 gap-3 pt-2 border-t border-amber-900/30 text-center">
+                        <div>
+                            <span class="text-xl font-bold text-turmeric font-mono block">100%</span>
+                            <span class="text-[10px] text-gray-400" data-i18n="stat_natural">Pure Resins</span>
+                        </div>
+                        <div>
+                            <span class="text-xl font-bold text-turmeric font-mono block">5.0 ★</span>
+                            <span class="text-[10px] text-gray-400" data-i18n="stat_rating">Store Rating</span>
+                        </div>
+                        <div>
+                            <span class="text-xl font-bold text-turmeric font-mono block">Bethel</span>
+                            <span class="text-[10px] text-gray-400" data-i18n="stat_hub">Local Hub</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Customer Reviews Box -->
+                <div class="lg:col-span-5 space-y-3">
+                    <div class="p-4 rounded-2xl bg-panelBg border border-amber-500/20">
+                        <div class="flex items-center justify-between mb-1">
+                            <div class="text-amber-400 text-xs">★★★★★</div>
+                            <span class="text-[10px] text-gray-400">Bethel Customer</span>
+                        </div>
+                        <p class="text-xs text-cream italic mb-1">"The Berbere has real traditional color and korarima aroma."</p>
+                        <span class="text-[11px] text-turmeric font-bold block">— Abeni T.</span>
+                    </div>
+
+                    <div class="p-4 rounded-2xl bg-panelBg border border-amber-500/20">
+                        <div class="flex items-center justify-between mb-1">
+                            <div class="text-amber-400 text-xs">★★★★★</div>
+                            <span class="text-[10px] text-gray-400">Kolfe Resident</span>
+                        </div>
+                        <p class="text-xs text-cream italic mb-1">"የእጣኑ ሽታ ልዩ ነው! የቡና ስነስርዓታችንን ሙሉ ያደርገዋል።"</p>
+                        <span class="text-[11px] text-turmeric font-bold block">— Selamawit G.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 6: LOCATION, MAP & DELIVERY HUB -->
+        <section id="location" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-xl mx-auto mb-8 space-y-1">
+                <h2 class="text-2xl sm:text-3xl font-bold font-serif text-cream" data-i18n="loc_section_title">Visit Our Bethel Store</h2>
+                <p class="text-amber-200/70 text-xs sm:text-sm" data-i18n="loc_section_sub">Front of Awash Bank, Bethel Street, Kolfe Keranyo K07, Addis Ababa.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                <!-- Interactive Styled HTML Canvas Store Map -->
+                <div class="lg:col-span-7 p-5 rounded-3xl bg-cardBg border border-amber-900/30 flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-3">
+                            <h3 class="text-base font-bold text-cream">
+                                Bethel Store Navigator
+                            </h3>
+                            <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 text-[10px] font-bold border border-emerald-500/30">Open Now</span>
+                        </div>
+
+                        <!-- Canvas Map Visualizer (No Dot in Center Button) -->
+                        <div class="relative w-full h-56 bg-espresso rounded-xl border border-amber-900/40 p-3 overflow-hidden flex flex-col justify-between">
+                            <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#f59e0b_1px,transparent_1px)] [background-size:16px_16px]"></div>
+                            
+                            <div class="relative z-10 flex justify-between items-start">
+                                <div class="px-2.5 py-1 rounded-lg bg-panelBg border border-amber-500/30 text-[11px] text-amber-200">
+                                    Bethel Hospital
+                                </div>
+                                <div class="px-2.5 py-1 rounded-lg bg-panelBg border border-amber-500/30 text-[11px] text-amber-200">
+                                    Awash Bank
+                                </div>
+                            </div>
+
+                            <!-- Center Pin: Zemzm Etan Bet (No Dot) -->
+                            <div class="relative z-10 self-center text-center my-auto">
+                                <div class="inline-block px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-turmeric to-berbere text-espresso font-bold text-xs shadow-xl shadow-amber-500/30">
+                                    Zemzm Etan Bet (ዘምዘም ዕጣን ቤት)
+                                </div>
+                                <p class="text-[10px] text-amber-200/80 mt-1 font-mono">Bethel Main Commercial Axis</p>
+                            </div>
+
+                            <div class="relative z-10 flex justify-between items-end text-[11px] text-gray-400">
+                                <span>Nearby Cafes</span>
+                                <span>Supermarket Hub</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Direct Action Buttons -->
+                    <div class="grid grid-cols-2 gap-3 mt-4">
+                        <a href="tel:0980482885" class="py-2.5 rounded-xl bg-turmeric text-espresso font-bold text-xs text-center hover:bg-amber-400 transition-colors">
+                            Call Store: 098 048 2885
+                        </a>
+                        <button onclick="calculateDeliveryFee()" class="py-2.5 rounded-xl bg-panelBg border border-amber-500/30 text-cream font-bold text-xs hover:border-turmeric transition-colors">
+                            Estimate Delivery
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Subcity Delivery Estimator Widget -->
+                <div class="lg:col-span-5 p-5 rounded-3xl bg-panelBg border border-amber-500/20 space-y-4">
+                    <h3 class="text-lg font-serif font-bold text-cream" data-i18n="del_calculator_title">Addis Ababa Delivery</h3>
+                    <p class="text-xs text-amber-100/70" data-i18n="del_calculator_desc">Select subcity to calculate dispatch fees from Bethel.</p>
+
+                    <div class="space-y-2">
+                        <label class="block text-xs font-semibold text-amber-200/80 uppercase" data-i18n="label_subcity">Select Subcity</label>
+                        <select id="subcitySelect" onchange="calculateDeliveryFee()" class="w-full px-3.5 py-2.5 rounded-xl bg-espresso border border-amber-900/40 text-cream text-xs focus:outline-none focus:border-turmeric">
+                            <option value="kolfe">Kolfe Keranyo (Bethel Local) — 100 ETB</option>
+                            <option value="nifas">Nifas Silk / Lafto — 200 ETB</option>
+                            <option value="kirkos">Kirkos / Kazanchis — 250 ETB</option>
+                            <option value="bole">Bole / Atlas — 280 ETB</option>
+                            <option value="arada">Arada / Piassa — 220 ETB</option>
+                            <option value="yeka">Yeka / Megenagna — 300 ETB</option>
+                        </select>
+                    </div>
+
+                    <div id="deliveryFeeResult" class="p-3 rounded-xl bg-espresso/80 border border-amber-900/40 space-y-1">
+                        <div class="flex justify-between items-center text-xs text-gray-400">
+                            <span data-i18n="label_est_time">Estimated Time</span>
+                            <span id="estTimeVal" class="text-amber-200 font-medium">20 - 40 Mins</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs text-gray-400" data-i18n="label_est_fee">Dispatch Fee</span>
+                            <span id="estFeeVal" class="text-base font-bold text-turmeric font-mono">100 ETB</span>
+                        </div>
+                    </div>
+
+                    <p class="text-[10px] text-amber-200/60 italic" data-i18n="del_note">
+                        * Free dispatch within Bethel for orders over 1,500 ETB.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-cardBg border-t border-amber-900/40 py-10 text-gray-400 text-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
+            <div class="space-y-2">
+                <div class="flex items-center gap-2.5">
+                    <img src="https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=100&q=80" alt="Zemzm Emblem" class="w-7 h-7 rounded-full object-cover border border-amber-500/40">
+                    <span class="text-base font-serif font-bold text-cream">ዘምዘም ዕጣን ቤት</span>
+                </div>
+                <p class="text-amber-200/70 text-xs" data-i18n="footer_about">
+                    5.0-star local spice and frankincense store in Bethel, Addis Ababa.
+                </p>
+            </div>
+
+            <div>
+                <h4 class="text-cream font-bold mb-2 uppercase tracking-wider text-[11px]" data-i18n="footer_links">Quick Navigation</h4>
+                <ul class="space-y-1.5">
+                    <li><a href="#home" class="hover:text-turmeric transition-colors">Home</a></li>
+                    <li><a href="#catalog" class="hover:text-turmeric transition-colors">Spice Catalog</a></li>
+                    <li><a href="#sensory" class="hover:text-turmeric transition-colors">Sensory Matrix</a></li>
+                    <li><a href="#location" class="hover:text-turmeric transition-colors">Bethel Location</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-cream font-bold mb-2 uppercase tracking-wider text-[11px]" data-i18n="footer_contact">Store Contact</h4>
+                <p class="text-amber-200/80 space-y-1">
+                    <span class="block">Front of Awash Bank, Bethel St.</span>
+                    <span class="block">Tel: <a href="tel:0980482885" class="text-turmeric font-bold hover:underline">098 048 2885</a></span>
+                    <span class="block">Hours: Daily till 9:30 PM</span>
+                </p>
+            </div>
+
+            <div class="space-y-2">
+                <h4 class="text-cream font-bold uppercase tracking-wider text-[11px]" data-i18n="footer_newsletter">Restock Alerts</h4>
+                <p class="text-[11px] text-gray-400" data-i18n="footer_newsletter_desc">Get notified when fresh Ogaden frankincense arrives.</p>
+                <div class="flex gap-2">
+                    <input type="text" placeholder="Phone or Email" class="w-full px-3 py-1.5 rounded-lg bg-espresso border border-amber-900/40 text-cream text-xs focus:outline-none focus:border-turmeric">
+                    <button onclick="subscribeNewsletter()" class="px-3 py-1.5 rounded-lg bg-turmeric text-espresso font-bold hover:bg-amber-400 transition-colors">
+                        Join
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-amber-900/30 pt-4 text-center text-[10px] text-gray-500">
+            © <span id="yearVal">2026</span> Zemzm Etan Bet (ዘምዘም ዕጣን ቤት). All rights reserved. | Bethel, Addis Ababa.
+        </div>
+    </footer>
+
+    <!-- PRODUCT DETAIL MODAL -->
+    <div id="productModal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-cardBg border border-amber-500/30 rounded-3xl max-w-xl w-full max-h-[90vh] overflow-y-auto p-5 sm:p-6 relative space-y-5">
+            <button onclick="closeProductModal()" class="absolute top-4 right-4 w-7 h-7 rounded-full bg-espresso text-cream hover:text-turmeric text-xs font-bold flex items-center justify-center border border-amber-900/40">
+                ✕
+            </button>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 items-center">
+                <!-- Image & 3D Viewer Canvas -->
+                <div class="space-y-2">
+                    <img id="modalProductImg" src="" alt="Product Detail" class="w-full h-36 object-cover rounded-2xl border border-amber-900/40 shadow-lg">
+                    
+                    <div class="h-24 bg-espresso rounded-xl border border-amber-900/40 relative overflow-hidden flex items-center justify-center">
+                        <canvas id="modal3DCanvas" class="w-full h-full cursor-grab active:cursor-grabbing"></canvas>
+                        <div class="absolute bottom-1 text-[9px] text-amber-200/50">
+                            3D Crystal Visualizer
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Details -->
+                <div class="space-y-3">
+                    <div id="modalCategoryBadge" class="inline-block px-2.5 py-0.5 rounded-full bg-turmeric/10 text-turmeric text-xs font-bold border border-turmeric/30">
+                        Category
+                    </div>
+                    <h3 id="modalTitle" class="text-xl font-serif font-bold text-cream">Product Title</h3>
+                    <p id="modalDesc" class="text-xs text-amber-100/80 leading-relaxed">Product description...</p>
+                    
+                    <!-- Portion Selector -->
+                    <div class="space-y-1">
+                        <label class="block text-[11px] font-semibold text-amber-200/80 uppercase" data-i18n="label_portion">Select Portion Weight</label>
+                        <select id="modalWeightSelect" onchange="updateModalPrice()" class="w-full px-3 py-1.5 rounded-xl bg-espresso border border-amber-900/40 text-cream text-xs focus:outline-none focus:border-turmeric">
+                            <option value="250">250 grams</option>
+                            <option value="500" selected>500 grams</option>
+                            <option value="1000">1.0 Kilogram</option>
+                        </select>
+                    </div>
+
+                    <div class="flex items-center justify-between pt-1">
+                        <div>
+                            <span class="text-[10px] text-gray-400 block" data-i18n="label_total_price">Total Price</span>
+                            <span id="modalPrice" class="text-xl font-bold text-turmeric font-mono">0 ETB</span>
+                        </div>
+                        <button id="modalAddToCartBtn" onclick="addModalItemToCart()" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-turmeric to-amber-600 text-espresso font-bold text-xs shadow-lg hover:scale-105 transition-all">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contextual Origin & Recommendations -->
+            <div class="border-t border-amber-900/40 pt-3 grid grid-cols-2 gap-3 text-xs">
+                <div class="p-2.5 rounded-xl bg-panelBg border border-amber-900/30">
+                    <span class="font-bold text-turmeric block text-[11px]">Sourcing Origin</span>
+                    <span id="modalOrigin" class="text-[11px]">Ethiopian Highlands</span>
+                </div>
+                <div class="p-2.5 rounded-xl bg-panelBg border border-amber-900/30">
+                    <span class="font-bold text-amber-200 block text-[11px]">Best Paired With</span>
+                    <span id="modalPairing" class="text-[11px]">Coffee Ceremony</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CART DRAWER MODAL (No Dot in Header) -->
+    <div id="cartDrawer" class="fixed inset-0 z-50 hidden bg-black/70 backdrop-blur-xs flex justify-end">
+        <div class="bg-cardBg border-l border-amber-500/20 w-full max-w-md h-full flex flex-col justify-between p-6 space-y-5 shadow-2xl">
+            <!-- Header -->
+            <div class="flex justify-between items-center border-b border-amber-900/40 pb-3">
+                <h3 class="text-lg font-serif font-bold text-cream" data-i18n="cart_drawer_title">Your Cart / ቅርጫት</h3>
+                <button onclick="toggleCartDrawer(false)" class="text-gray-400 hover:text-cream text-xs font-bold">✕</button>
+            </div>
+
+            <!-- Cart Items List -->
+            <div id="cartItemsList" class="flex-1 overflow-y-auto space-y-3 pr-1">
+                <!-- Dynamic items -->
+            </div>
+
+            <!-- Summary & Order Actions -->
+            <div class="border-t border-amber-900/40 pt-3 space-y-3">
+                <div class="space-y-1 text-xs text-amber-200/80">
+                    <div class="flex justify-between">
+                        <span data-i18n="cart_subtotal">Subtotal</span>
+                        <span id="cartSubtotal" class="font-mono text-cream font-bold">0 ETB</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span data-i18n="cart_dispatch">Estimated Local Dispatch</span>
+                        <span id="cartDispatch" class="font-mono text-cream font-bold">100 ETB</span>
+                    </div>
+                    <div class="flex justify-between text-base font-bold text-turmeric pt-2 border-t border-amber-900/30">
+                        <span data-i18n="cart_total">Total Order</span>
+                        <span id="cartTotal" class="font-mono">100 ETB</span>
+                    </div>
+                </div>
+
+                <div class="space-y-2">
+                    <button onclick="checkoutViaPhone()" class="w-full py-3 rounded-xl bg-gradient-to-r from-turmeric to-amber-600 text-espresso font-bold text-xs uppercase tracking-wider shadow-lg hover:scale-102 transition-all flex items-center justify-center">
+                        <span>Order via Phone / Call 098 048 2885</span>
+                    </button>
+                    <button onclick="checkoutViaWhatsApp()" class="w-full py-3 rounded-xl bg-emerald-600 text-white font-bold text-xs uppercase tracking-wider hover:bg-emerald-500 transition-all flex items-center justify-center">
+                        <span>Order via WhatsApp</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- JAVASCRIPT APPLICATION LOGIC -->
+    <script>
+        // --- 1. BASE DATA & STATE MANAGEMENT ---
+        let currentLang = 'am';
+        let activeCategoryFilter = 'all';
+        let cart = [];
+        let activeModalProduct = null;
+        let sensoryChart = null;
+
+        const PRODUCTS = [
+            {
+                id: 'berbere_special',
+                category: 'spices',
+                name_en: 'Special Mekelesha Berbere',
+                name_am: 'ልዩ መከለሻ በርበሬ',
+                desc_en: 'Red pepper ground with korarima, garlic, ginger, and herbs.',
+                desc_am: 'በኮረሪማ፣ በነጭ ሽንኩርት እና በቅመማ ቅመም የተዘጋጀ ልዩ በርበሬ።',
+                priceBaseETB: 450,
+                heatLevel: 4,
+                origin: 'Gojjam & Bali Highlands',
+                pairing: 'Doro Wat, Key Wat',
+                badge: 'Bestseller',
+                colorHex: 0xdc2626,
+                imageUrl: 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=600&q=80',
+                sensory: { aroma: 90, heat: 85, earthiness: 75, warmth: 95, sweetResin: 30 }
+            },
+            {
+                id: 'etan_white',
+                category: 'etan',
+                name_en: 'White Ogaden Frankincense',
+                name_am: 'ነጭ የኦጋዴን ዕጣን',
+                desc_en: 'Pure aromatic resin tears for Ethiopian coffee ceremonies.',
+                desc_am: 'ለቡና ስነስርዓት የሚሆን ንጹህ የኦጋዴን ነጭ ዕጣን።',
+                priceBaseETB: 650,
+                heatLevel: 0,
+                origin: 'Ogaden Region, Eastern Ethiopia',
+                pairing: 'Coffee Ceremony (የቡና ፍላት)',
+                badge: 'Premium Etan',
+                colorHex: 0xf59e0b,
+                imageUrl: 'https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=600&q=80',
+                sensory: { aroma: 98, heat: 0, earthiness: 80, warmth: 90, sweetResin: 95 }
+            },
+            {
+                id: 'shiro_blend',
+                category: 'spices',
+                name_en: 'Pure Roasted Shiro Powder',
+                name_am: 'ልዩ የቤት ሽሮ እህል',
+                desc_en: 'Roasted chickpea flour blended with korarima and garlic.',
+                desc_am: 'በጥንቃቄ ከተቆላ ሽምብራ እና ቅመማ ቅመም የተፈጨ ሽሮ።',
+                priceBaseETB: 280,
+                heatLevel: 2,
+                origin: 'Debre Birhan',
+                pairing: 'Shiro Tegabino',
+                badge: 'Essential',
+                colorHex: 0xd97706,
+                imageUrl: 'https://images.unsplash.com/photo-1541544741938-0af808871cc0?auto=format&fit=crop&w=600&q=80',
+                sensory: { aroma: 70, heat: 40, earthiness: 90, warmth: 80, sweetResin: 20 }
+            },
+            {
+                id: 'kerbe_myrrh',
+                category: 'etan',
+                name_en: 'Ogaden Fragrant Myrrh (Kerbe)',
+                name_am: 'የኦጋዴን ከረቤ',
+                desc_en: 'Dark fragrant tree resin for deep balsamic aroma.',
+                desc_am: 'ደስ የሚል ሽታ ያለው ባህላዊ ከረቤ።',
+                priceBaseETB: 720,
+                heatLevel: 0,
+                origin: 'Somali Regional State',
+                pairing: 'Evening Incense',
+                badge: 'Sacred Resin',
+                colorHex: 0x8f4f22,
+                imageUrl: 'https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=600&q=80',
+                sensory: { aroma: 92, heat: 0, earthiness: 95, warmth: 88, sweetResin: 85 }
+            },
+            {
+                id: 'mekelesha',
+                category: 'spices',
+                name_en: 'Mekelesha Spice Blend',
+                name_am: 'የወጥ መከለሻ ቅመም',
+                desc_en: 'Traditional 7-spice finishing mix with cardamom and cloves.',
+                desc_am: 'ለወጥ ማጠናቀቂያ የሚሆን የ7 ቅመሞች ድብልቅ።',
+                priceBaseETB: 380,
+                heatLevel: 1,
+                origin: 'Addis Ababa',
+                pairing: 'Finishing Stews',
+                badge: 'Chef Choice',
+                colorHex: 0x78350f,
+                imageUrl: 'https://images.unsplash.com/photo-1532336414038-cf19250c5757?auto=format&fit=crop&w=600&q=80',
+                sensory: { aroma: 95, heat: 20, earthiness: 85, warmth: 98, sweetResin: 50 }
+            },
+            {
+                id: 'tikur_azmud',
+                category: 'herbs',
+                name_en: 'Organic Black Cumin (Tikur Azmud)',
+                name_am: 'ጥቁር አዝሙድ',
+                desc_en: 'Cleaned organic nigella seeds rich in essential oils.',
+                desc_am: 'ንጹህ ጥቁር አዝሙድ ለምግብ እና ለጤና።',
+                priceBaseETB: 220,
+                heatLevel: 1,
+                origin: 'Gonder Highlands',
+                pairing: 'Bread & Teas',
+                badge: 'Health Herb',
+                colorHex: 0x1f2937,
+                imageUrl: 'https://images.unsplash.com/photo-1509358271058-acd22cc93898?auto=format&fit=crop&w=600&q=80',
+                sensory: { aroma: 80, heat: 15, earthiness: 90, warmth: 75, sweetResin: 10 }
+            },
+            {
+                id: 'mitmita_extra',
+                category: 'spices',
+                name_en: 'Extra Spicy Mitmita',
+                name_am: 'ልዩ ሚጥሚጣ',
+                desc_en: 'Bird-eye chili powder ground with sea salt and cardamom.',
+                desc_am: 'የሚያቃጥል ልዩ ሚጥሚጣ ለክትፎ እና ለጥብስ።',
+                priceBaseETB: 350,
+                heatLevel: 5,
+                origin: 'Gurage Zone',
+                pairing: 'Kitfo, Tibs',
+                badge: 'Fiery Hot',
+                colorHex: 0xef4444,
+                imageUrl: 'https://images.unsplash.com/photo-1588252303782-cb80119abd6d?auto=format&fit=crop&w=600&q=80',
+                sensory: { aroma: 85, heat: 100, earthiness: 50, warmth: 90, sweetResin: 10 }
+            },
+            {
+                id: 'red_etan',
+                category: 'etan',
+                name_en: 'Red Scented Resin Etan',
+                name_am: 'ቀይ የጣን ዕጣን',
+                desc_en: 'Rich amber scented resin producing sweet aromatic smoke.',
+                desc_am: 'ቀይ የጣን ዕጣን ለደስ የሚል መዓዛ።',
+                priceBaseETB: 420,
+                heatLevel: 0,
+                origin: 'Borena Zone',
+                pairing: 'Home Scenting',
+                badge: 'Aroma Resin',
+                colorHex: 0xb45309,
+                imageUrl: 'https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=600&q=80',
+                sensory: { aroma: 88, heat: 0, earthiness: 70, warmth: 85, sweetResin: 90 }
+            }
+        ];
+
+        // --- 2. STREAMLINED I18N DICTIONARY ---
+        const I18N = {
+            en: {
+                brand_subtitle: "Zemzm Spice & Frankincense",
+                nav_home: "Home",
+                nav_categories: "Categories",
+                nav_shop: "Shop",
+                nav_sensory: "Flavor Profile",
+                nav_location: "Visit Us",
+                hero_heading_1: "Aroma. Flavor. Tradition.",
+                hero_heading_2: "የጣዕም እና የሽታ ጥግ",
+                hero_subtext: "Authentic Ethiopian spices, ground Shiro, and pure Ogaden frankincense tears. Located in front of Awash Bank, Bethel Street.",
+                stat_location: "Bethel, Kolfe Keranyo K07",
+                stat_hours: "Open Daily till 9:30 PM",
+                cta_shop: "Explore Collection →",
+                cta_sensory: "Flavor Profiles",
+                badge_featured: "Signature Blend",
+                featured_title: "Special Mekelesha & Pure Berbere",
+                featured_desc: "Sun-dried red peppers pounded with korarima, garlic, and herbs.",
+                label_price_from: "Price from",
+                btn_quick_view: "Quick View",
+                cat_section_title: "Our Collections",
+                cat_section_sub: "Selected, ground, and preserved for authentic aroma.",
+                cat_1_title: "Cooking Spices (ቅመማ ቅመም)",
+                cat_1_desc: "Berbere, Shiro, Mitmita, Korarima & Mekelesha.",
+                cat_2_title: "Incense & Resins (ዕጣን እና ከረቤ)",
+                cat_2_desc: "Frankincense tears, red resin & scented myrrh.",
+                cat_3_title: "Herbs & Seeds (ባህላዊ እፅዋት)",
+                cat_3_desc: "Black Cumin (Tikur Azmud), Koseret & Rue.",
+                btn_explore_cat: "Browse Collection →",
+                shop_title: "Store Catalog",
+                shop_subtitle: "Filter by category, heat, or search by name.",
+                label_category: "Category Filter",
+                filter_all: "All",
+                filter_spices: "Spices",
+                filter_etan: "Etan",
+                filter_herbs: "Herbs",
+                label_heat: "Max Heat Level",
+                label_price_limit: "Max Price (ETB)",
+                msg_no_products: "No items match your selected filters.",
+                sensory_title: "Aroma & Spice Matrix",
+                sensory_desc: "Select a product to inspect its aroma, heat, earthiness, warmth, and resin values.",
+                label_select_sensory: "Select Product",
+                sensory_aroma_note: "Origin",
+                sensory_usage: "Recommended Use",
+                heritage_title: "Coffee & Incense Heritage",
+                heritage_desc: "Our frankincense tears are harvested from eastern highlands for authentic, clean-burning coffee ceremonies.",
+                stat_natural: "Pure Resins",
+                stat_rating: "Store Rating",
+                stat_hub: "Local Hub",
+                loc_section_title: "Visit Our Bethel Store",
+                loc_section_sub: "Front of Awash Bank, Bethel Street, Kolfe Keranyo K07, Addis Ababa.",
+                del_calculator_title: "Addis Ababa Delivery",
+                del_calculator_desc: "Select subcity to calculate dispatch fees from Bethel.",
+                label_subcity: "Select Subcity",
+                label_est_time: "Estimated Time",
+                label_est_fee: "Dispatch Fee",
+                del_note: "* Free dispatch within Bethel for orders over 1,500 ETB.",
+                footer_about: "5.0-star local spice and frankincense store in Bethel, Addis Ababa.",
+                footer_links: "Quick Navigation",
+                footer_contact: "Store Contact",
+                footer_newsletter: "Restock Alerts",
+                footer_newsletter_desc: "Get notified when fresh Ogaden frankincense arrives.",
+                label_portion: "Select Portion Weight",
+                label_total_price: "Total Price",
+                cart_drawer_title: "Your Cart / ቅርጫት",
+                cart_subtotal: "Subtotal",
+                cart_dispatch: "Estimated Local Dispatch",
+                cart_total: "Total Order"
+            },
+            am: {
+                brand_subtitle: "የቅመማ ቅመም እና የዕጣን መደብር",
+                nav_home: "መነሻ",
+                nav_categories: "ምድቦች",
+                nav_shop: "ሱቃችን",
+                nav_sensory: "የሽታና ጣዕም መለኪያ",
+                nav_location: "ቤተል ሱቃችን",
+                hero_heading_1: "የጣዕም እና የሽታ ጥግ",
+                hero_heading_2: "ዘምዘም ዕጣን ቤት",
+                hero_subtext: "በቤተል አዋሽ ባንክ ፊት ለፊት የሚገኘው መደብራችን ልዩ በርበሬዎች፣ የቤት ሽሮዎች እና ንጹህ ነጭ ዕጣኖችን በጥራት ያቀርባል።",
+                stat_location: "ቤተል ኮልፌ ቀራንዮ K07",
+                stat_hours: "በየቀኑ እስከ ምሽቱ 3:30 ክፍት ነው",
+                cta_shop: "ምርቶችን ይመልከቱ →",
+                cta_sensory: "የሽታና ጣዕም መለኪያ",
+                badge_featured: "ልዩ ምርታችን",
+                featured_title: "ልዩ የመከለሻ በርበሬ",
+                featured_desc: "በኮረሪማ፣ በነጭ ሽንኩርት እና በቅመማ ቅመም የተዘጋጀ።",
+                label_price_from: "ዋጋ ከ",
+                btn_quick_view: "እይታ",
+                cat_section_title: "ዋና ዋና ምድቦቻችን",
+                cat_section_sub: "እያንዳንዱ ቅመም እና ዕጣን በጥንቃቄ ተመርጦ ይቀርባል።",
+                cat_1_title: "የወጥ ቅመሞች (Spices)",
+                cat_1_desc: "በርበሬ፣ ሽሮ፣ ሚጥሚጣ፣ ኮረሪማ እና መከለሻ።",
+                cat_2_title: "ዕጣን እና ከረቤ (Incense)",
+                cat_2_desc: "የኦጋዴን ነጭ ዕጣን፣ ቀይ የጣን ዕጣን እና ከረቤ።",
+                cat_3_title: "ባህላዊ እፅዋት (Herbs)",
+                cat_3_desc: "ጥቁር አዝሙድ፣ ኮሰረት እና ጤናዳም።",
+                btn_explore_cat: "ምርቶችን ይመልከቱ →",
+                shop_title: "የሱቃችን ዝርዝር",
+                shop_subtitle: "በምድብ፣ በሚያቃጥል መጠን ወይም በስም ይፈልጉ።",
+                label_category: "የምድብ ማጣሪያ",
+                filter_all: "ሁሉንም",
+                filter_spices: "ቅመሞች",
+                filter_etan: "ዕጣን",
+                filter_herbs: "እፅዋት",
+                label_heat: "የማቃጠል መጠን",
+                label_price_limit: "ከፍተኛ ዋጋ (ብር)",
+                msg_no_products: "ምንም የተገኘ ምርት የለም።",
+                sensory_title: "የመዓዛ መለኪያ",
+                sensory_desc: "የምርቶቹን የሽታ ጥንካሬ፣ የመሬት ጣዕም እና የሚያቃጥል መጠን በቻርት ይመልከቱ።",
+                label_select_sensory: "ምርት ይምረጡ",
+                sensory_aroma_note: "መነሻ ቦታ",
+                sensory_usage: "ለ ምን ይሆናል",
+                heritage_title: "የቡና እና የዕጣን ባህል",
+                heritage_desc: "ዘምዘም ዕጣን ቤት ለቡና ስነስርዓት የሚሆኑ ንጹህ የኦጋዴን ዕጣኖችን ያቀርባል።",
+                stat_natural: "ንጹህ ዕጣን",
+                stat_rating: "የደንበኞች አስተያየት",
+                stat_hub: "ቤተል መደብር",
+                loc_section_title: "ቤተል ሱቃችንን ይጎብኙ",
+                loc_section_sub: "አድራሻ፡ ኮልፌ ቀራንዮ K07፣ ቤተል አዋሽ ባንክ ፊት ለፊት።",
+                del_calculator_title: "የማድረሻ ሂሳብ ማስያ",
+                del_calculator_desc: "ክፍለ ከተማዎን በመምረጥ የማድረሻ ዋጋን ያሰሉ::",
+                label_subcity: "ክፍለ ከተማ ይምረጡ",
+                label_est_time: "የሚወስደው ጊዜ",
+                label_est_fee: "የማድረሻ ዋጋ",
+                del_note: "* ከ 1,500 ብር በላይ ላዘዙ የቤተል አካባቢ ነፃ ማድረሻ!",
+                footer_about: "በቤተል አዲስ አበባ የሚገኝ የ 5.0 ኮከብ የቅመም እና የዕጣን መደብር።",
+                footer_links: "ፈጣን ማውጫ",
+                footer_contact: "አድራሻ እና ስልክ",
+                footer_newsletter: "አዲስ ምርት ሲመጣ ለማወቅ",
+                footer_newsletter_desc: "አዲስ ዕጣን ሲገባ መረጃ ይደርስዎታል።",
+                label_portion: "መጠን ይምረጡ",
+                label_total_price: "ጠቅላላ ዋጋ",
+                cart_drawer_title: "የእርስዎ ቅርጫት",
+                cart_subtotal: "የምርቶች ዋጋ",
+                cart_dispatch: "የማድረሻ ሂሳብ",
+                cart_total: "ጠቅላላ ድምር"
+            }
+        };
+
+        // --- 3. THREE.JS 3D SCENE & INTERACTIVE CANVAS ENGINE ---
+        let heroScene, heroCamera, heroRenderer, particleSystem;
+        let featScene, featCamera, featRenderer, featMesh;
+        let modalScene, modalCamera, modalRenderer, modalMesh;
+
+        function init3DHeroVisualizer() {
+            const canvas = document.getElementById('heroCanvas');
+            if (!canvas) return;
+
+            heroScene = new THREE.Scene();
+            heroCamera = new THREE.PerspectiveCamera(60, canvas.clientWidth / canvas.clientHeight, 0.1, 1000);
+            heroCamera.position.z = 25;
+
+            heroRenderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+            heroRenderer.setSize(canvas.clientWidth, canvas.clientHeight);
+            heroRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+            const particleCount = 100;
+            const geometry = new THREE.BufferGeometry();
+            const positions = new Float32Array(particleCount * 3);
+            const colors = new Float32Array(particleCount * 3);
+
+            const palette = [
+                new THREE.Color(0xf59e0b),
+                new THREE.Color(0xdc2626),
+                new THREE.Color(0x8f4f22),
+                new THREE.Color(0xfef3c7)
+            ];
+
+            for (let i = 0; i < particleCount; i++) {
+                positions[i * 3] = (Math.random() - 0.5) * 60;
+                positions[i * 3 + 1] = (Math.random() - 0.5) * 60;
+                positions[i * 3 + 2] = (Math.random() - 0.5) * 40;
+
+                const c = palette[Math.floor(Math.random() * palette.length)];
+                colors[i * 3] = c.r;
+                colors[i * 3 + 1] = c.g;
+                colors[i * 3 + 2] = c.b;
+            }
+
+            geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+            const material = new THREE.PointsMaterial({
+                size: 0.8,
+                vertexColors: true,
+                transparent: true,
+                opacity: 0.85
+            });
+
+            particleSystem = new THREE.Points(geometry, material);
+            heroScene.add(particleSystem);
+
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
+            heroScene.add(ambientLight);
+
+            window.addEventListener('mousemove', (e) => {
+                const mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+                const mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+                if (particleSystem) {
+                    particleSystem.rotation.y = mouseX * 0.2;
+                    particleSystem.rotation.x = mouseY * 0.2;
+                }
+            });
+
+            function animateHero() {
+                requestAnimationFrame(animateHero);
+                if (particleSystem) {
+                    particleSystem.rotation.y += 0.0015;
+                }
+                heroRenderer.render(heroScene, heroCamera);
+            }
+            animateHero();
+        }
+
+        function initFeatured3D() {
+            const canvas = document.getElementById('featuredProduct3DCanvas');
+            if (!canvas) return;
+
+            featScene = new THREE.Scene();
+            featCamera = new THREE.PerspectiveCamera(50, canvas.clientWidth / canvas.clientHeight, 0.1, 100);
+            featCamera.position.z = 4.5;
+
+            featRenderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+            featRenderer.setSize(canvas.clientWidth, canvas.clientHeight);
+
+            const geo = new THREE.IcosahedronGeometry(1.5, 1);
+            const mat = new THREE.MeshStandardMaterial({
+                color: 0xf59e0b,
+                roughness: 0.3,
+                metalness: 0.2
+            });
+
+            featMesh = new THREE.Mesh(geo, mat);
+            featScene.add(featMesh);
+
+            const light1 = new THREE.DirectionalLight(0xfff3c7, 1.2);
+            light1.position.set(5, 5, 5);
+            featScene.add(light1);
+            featScene.add(new THREE.AmbientLight(0xffffff, 0.5));
+
+            let isDragging = false;
+            let previousMousePosition = { x: 0, y: 0 };
+
+            canvas.addEventListener('mousedown', () => { isDragging = true; });
+            canvas.addEventListener('mousemove', (e) => {
+                if (isDragging) {
+                    const deltaMove = { x: e.clientX - previousMousePosition.x, y: e.clientY - previousMousePosition.y };
+                    featMesh.rotation.y += deltaMove.x * 0.01;
+                    featMesh.rotation.x += deltaMove.y * 0.01;
+                }
+                previousMousePosition = { x: e.clientX, y: e.clientY };
+            });
+            window.addEventListener('mouseup', () => { isDragging = false; });
+
+            function animateFeat() {
+                requestAnimationFrame(animateFeat);
+                if (!isDragging) {
+                    featMesh.rotation.y += 0.005;
+                }
+                featRenderer.render(featScene, featCamera);
+            }
+            animateFeat();
+        }
+
+        function initModal3D(colorHex) {
+            const canvas = document.getElementById('modal3DCanvas');
+            if (!canvas) return;
+
+            modalScene = new THREE.Scene();
+            modalCamera = new THREE.PerspectiveCamera(50, canvas.clientWidth / canvas.clientHeight, 0.1, 100);
+            modalCamera.position.z = 4;
+
+            modalRenderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+            modalRenderer.setSize(canvas.clientWidth, canvas.clientHeight);
+
+            const geo = new THREE.DodecahedronGeometry(1.4, 1);
+            const mat = new THREE.MeshStandardMaterial({
+                color: colorHex || 0xf59e0b,
+                roughness: 0.4,
+                metalness: 0.1
+            });
+
+            modalMesh = new THREE.Mesh(geo, mat);
+            modalScene.add(modalMesh);
+
+            const dirLight = new THREE.DirectionalLight(0xffffff, 1.2);
+            dirLight.position.set(3, 4, 5);
+            modalScene.add(dirLight);
+            modalScene.add(new THREE.AmbientLight(0xffffff, 0.4));
+
+            function animateModal() {
+                if (modalMesh) {
+                    requestAnimationFrame(animateModal);
+                    modalMesh.rotation.y += 0.008;
+                    modalMesh.rotation.x += 0.004;
+                    modalRenderer.render(modalScene, modalCamera);
+                }
+            }
+            animateModal();
+        }
+
+
+        // --- 4. CHART.JS SENSORY RADAR PROFILE ENGINE ---
+        function initSensoryChart() {
+            const ctx = document.getElementById('sensoryRadarChart');
+            if (!ctx) return;
+
+            const initialData = PRODUCTS[0].sensory;
+
+            sensoryChart = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: [
+                        'Aroma / የሽታ ጥንካሬ',
+                        'Heat / የሚያቃጥል',
+                        'Earthiness / የመሬት ጣዕም',
+                        'Warmth / ሙቀት',
+                        'Resin / ጣፋጭ ዕጣን'
+                    ],
+                    datasets: [{
+                        label: PRODUCTS[0].name_en,
+                        data: [initialData.aroma, initialData.heat, initialData.earthiness, initialData.warmth, initialData.sweetResin],
+                        backgroundColor: 'rgba(245, 158, 11, 0.25)',
+                        borderColor: '#f59e0b',
+                        borderWidth: 2,
+                        pointBackgroundColor: '#dc2626',
+                        pointBorderColor: '#fff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            angleLines: { color: 'rgba(245, 158, 11, 0.2)' },
+                            grid: { color: 'rgba(245, 158, 11, 0.15)' },
+                            pointLabels: {
+                                color: '#fef3c7',
+                                font: { size: 10, family: 'system-ui' }
+                            },
+                            ticks: { display: false, max: 100, min: 0 }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            labels: { color: '#fef3c7', font: { size: 11 } }
+                        }
+                    }
+                }
+            });
+        }
+
+        function updateSensoryChart() {
+            const select = document.getElementById('sensoryProductSelect');
+            if (!select || !sensoryChart) return;
+
+            const prodId = select.value;
+            const product = PRODUCTS.find(p => p.id === prodId);
+            if (!product) return;
+
+            const s = product.sensory;
+            sensoryChart.data.datasets[0].label = currentLang === 'am' ? product.name_am : product.name_en;
+            sensoryChart.data.datasets[0].data = [s.aroma, s.heat, s.earthiness, s.warmth, s.sweetResin];
+            sensoryChart.update();
+
+            const noteVal = document.getElementById('sensoryNoteVal');
+            const usageVal = document.getElementById('sensoryUsageVal');
+            if (noteVal) noteVal.innerText = product.origin;
+            if (usageVal) usageVal.innerText = product.pairing;
+        }
+
+
+        // --- 5. RENDER PRODUCTS CATALOG ---
+        function renderProducts() {
+            const grid = document.getElementById('productGrid');
+            const noProductsMsg = document.getElementById('noProductsMsg');
+            if (!grid) return;
+
+            const searchVal = document.getElementById('searchInput')?.value.toLowerCase() || '';
+            const heatVal = parseInt(document.getElementById('heatRange')?.value || '5');
+            const priceVal = parseInt(document.getElementById('priceRange')?.value || '1000');
+
+            grid.innerHTML = '';
+            let visibleCount = 0;
+
+            PRODUCTS.forEach(p => {
+                const name = currentLang === 'am' ? p.name_am : p.name_en;
+                const desc = currentLang === 'am' ? p.desc_am : p.desc_en;
+
+                const matchesSearch = name.toLowerCase().includes(searchVal) || desc.toLowerCase().includes(searchVal);
+                const matchesCategory = (activeCategoryFilter === 'all') || (p.category === activeCategoryFilter);
+                const matchesHeat = p.heatLevel <= heatVal;
+                const matchesPrice = p.priceBaseETB <= priceVal;
+
+                if (matchesSearch && matchesCategory && matchesHeat && matchesPrice) {
+                    visibleCount++;
+
+                    let heatBar = '';
+                    if (p.heatLevel > 0) {
+                        heatBar = `<span class="flex gap-1 items-center">`;
+                        for (let i = 0; i < 5; i++) {
+                            heatBar += `<span class="w-1.5 h-2.5 rounded-full ${i < p.heatLevel ? 'bg-berbere' : 'bg-gray-700'}"></span>`;
+                        }
+                        heatBar += `</span>`;
+                    } else {
+                        heatBar = `<span class="text-[10px] text-amber-300 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20">Aromatic</span>`;
+                    }
+
+                    const cardHtml = `
+                        <div class="tilt-card p-4 rounded-2xl bg-cardBg border border-amber-900/30 hover:border-turmeric/50 flex flex-col justify-between space-y-3 group">
+                            <div class="space-y-2.5">
+                                <div class="flex justify-between items-start">
+                                    <span class="px-2 py-0.5 rounded-full bg-turmeric/10 text-turmeric text-[10px] font-bold border border-turmeric/30">
+                                        ${p.badge}
+                                    </span>
+                                    <div>${heatBar}</div>
+                                </div>
+
+                                <div class="w-full h-32 bg-espresso rounded-xl overflow-hidden border border-amber-900/20">
+                                    <img src="${p.imageUrl}" alt="${name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                </div>
+
+                                <div>
+                                    <h3 class="text-base font-serif font-bold text-cream">${name}</h3>
+                                    <p class="text-[11px] text-amber-100/70 line-clamp-2 mt-0.5">${desc}</p>
+                                </div>
+                            </div>
+
+                            <div class="pt-2 border-t border-amber-900/30 space-y-2">
+                                <div class="flex items-center justify-between">
+                                    <span class="text-[11px] text-gray-400">${currentLang === 'am' ? 'ዋጋ' : 'Price'}</span>
+                                    <span class="text-base font-bold text-turmeric font-mono">${p.priceBaseETB} ETB</span>
+                                </div>
+
+                                <div class="grid grid-cols-2 gap-1.5">
+                                    <button onclick="openProductModal('${p.id}')" class="py-1.5 rounded-lg bg-panelBg border border-amber-500/30 text-cream text-[11px] font-semibold hover:border-turmeric transition-colors">
+                                        ${currentLang === 'am' ? 'እይታ' : 'View'}
+                                    </button>
+                                    <button onclick="quickAddToCart('${p.id}')" class="py-1.5 rounded-lg bg-turmeric text-espresso text-[11px] font-bold hover:bg-amber-400 transition-colors">
+                                        ${currentLang === 'am' ? '+ ቅርጫት' : '+ Cart'}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    grid.innerHTML += cardHtml;
+                }
+            });
+
+            if (visibleCount === 0) {
+                noProductsMsg.classList.remove('hidden');
+            } else {
+                noProductsMsg.classList.add('hidden');
+            }
+        }
+
+        function filterProducts() {
+            const heatVal = document.getElementById('heatRange')?.value;
+            const priceVal = document.getElementById('priceRange')?.value;
+
+            const heatDisp = document.getElementById('heatValDisplay');
+            const priceDisp = document.getElementById('priceValDisplay');
+
+            if (heatDisp) heatDisp.innerText = heatVal == '0' ? 'Resins Only' : `Level ≤ ${heatVal}`;
+            if (priceDisp) priceDisp.innerText = `${priceVal} ETB`;
+
+            renderProducts();
+        }
+
+        function setCategoryFilter(cat) {
+            activeCategoryFilter = cat;
+            document.querySelectorAll('.cat-btn').forEach(btn => {
+                if (btn.dataset.cat === cat) {
+                    btn.classList.add('bg-turmeric', 'text-espresso', 'font-bold');
+                    btn.classList.remove('bg-panelBg', 'text-gray-300');
+                } else {
+                    btn.classList.remove('bg-turmeric', 'text-espresso', 'font-bold');
+                    btn.classList.add('bg-panelBg', 'text-gray-300');
+                }
+            });
+            renderProducts();
+        }
+
+        function filterByCategory(cat) {
+            setCategoryFilter(cat);
+            document.getElementById('catalog')?.scrollIntoView({ behavior: 'smooth' });
+        }
+
+
+        // --- 6. MODAL & CART DRAWER ---
+        function openProductModal(prodId) {
+            const product = PRODUCTS.find(p => p.id === prodId);
+            if (!product) return;
+
+            activeModalProduct = product;
+
+            document.getElementById('modalTitle').innerText = currentLang === 'am' ? product.name_am : product.name_en;
+            document.getElementById('modalDesc').innerText = currentLang === 'am' ? product.desc_am : product.desc_en;
+            document.getElementById('modalCategoryBadge').innerText = product.badge;
+            document.getElementById('modalOrigin').innerText = product.origin;
+            document.getElementById('modalPairing').innerText = product.pairing;
+
+            const modalImg = document.getElementById('modalProductImg');
+            if (modalImg) modalImg.src = product.imageUrl;
+
+            updateModalPrice();
+            document.getElementById('productModal').classList.remove('hidden');
+
+            setTimeout(() => {
+                initModal3D(product.colorHex);
+            }, 50);
+        }
+
+        function closeProductModal() {
+            document.getElementById('productModal').classList.add('hidden');
+        }
+
+        function updateModalPrice() {
+            if (!activeModalProduct) return;
+
+            const weight = parseInt(document.getElementById('modalWeightSelect')?.value || '500');
+            const calculatedPrice = Math.round((activeModalProduct.priceBaseETB / 500) * weight);
+            document.getElementById('modalPrice').innerText = `${calculatedPrice} ETB`;
+        }
+
+        function addModalItemToCart() {
+            if (!activeModalProduct) return;
+            const weight = parseInt(document.getElementById('modalWeightSelect')?.value || '500');
+            const calculatedPrice = Math.round((activeModalProduct.priceBaseETB / 500) * weight);
+
+            cart.push({
+                id: activeModalProduct.id,
+                name: currentLang === 'am' ? activeModalProduct.name_am : activeModalProduct.name_en,
+                weight: weight,
+                price: calculatedPrice,
+                imageUrl: activeModalProduct.imageUrl
+            });
+
+            updateCartUI();
+            closeProductModal();
+            toggleCartDrawer(true);
+        }
+
+        function quickAddToCart(prodId) {
+            const product = PRODUCTS.find(p => p.id === prodId);
+            if (!product) return;
+
+            cart.push({
+                id: product.id,
+                name: currentLang === 'am' ? product.name_am : product.name_en,
+                weight: 500,
+                price: product.priceBaseETB,
+                imageUrl: product.imageUrl
+            });
+
+            updateCartUI();
+            toggleCartDrawer(true);
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const badge = document.getElementById('cartBadge');
+            const cartItemsList = document.getElementById('cartItemsList');
+            const subtotalEl = document.getElementById('cartSubtotal');
+            const dispatchEl = document.getElementById('cartDispatch');
+            const totalEl = document.getElementById('cartTotal');
+
+            if (badge) {
+                badge.innerText = cart.length;
+                badge.style.transform = cart.length > 0 ? 'scale(1)' : 'scale(0)';
+            }
+
+            if (!cartItemsList) return;
+
+            if (cart.length === 0) {
+                cartItemsList.innerHTML = `
+                    <div class="text-center py-10 text-gray-400 space-y-1">
+                        <p class="text-xs">${currentLang === 'am' ? 'ቅርጫትዎ ባዶ ነው' : 'Cart is empty'}</p>
+                    </div>
+                `;
+                subtotalEl.innerText = '0 ETB';
+                totalEl.innerText = '100 ETB';
+                return;
+            }
+
+            let subtotal = 0;
+            cartItemsList.innerHTML = '';
+
+            cart.forEach((item, index) => {
+                subtotal += item.price;
+                cartItemsList.innerHTML += `
+                    <div class="p-3 rounded-xl bg-panelBg border border-amber-900/30 flex items-center justify-between gap-2 text-xs">
+                        <div class="flex items-center gap-2.5">
+                            <img src="${item.imageUrl}" alt="${item.name}" class="w-9 h-9 rounded-lg object-cover border border-amber-900/40">
+                            <div>
+                                <h4 class="font-bold text-cream font-serif text-[11px]">${item.name}</h4>
+                                <span class="text-[10px] text-gray-400">${item.weight}g portion</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="font-mono text-turmeric font-bold text-[11px]">${item.price} ETB</span>
+                            <button onclick="removeFromCart(${index})" class="text-berbere hover:text-red-400 font-bold text-xs">✕</button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            const dispatchFee = subtotal >= 1500 ? 0 : 100;
+            subtotalEl.innerText = `${subtotal} ETB`;
+            dispatchEl.innerText = dispatchFee === 0 ? 'FREE (Bethel)' : `${dispatchFee} ETB`;
+            totalEl.innerText = `${subtotal + dispatchFee} ETB`;
+        }
+
+        function toggleCartDrawer(show) {
+            const drawer = document.getElementById('cartDrawer');
+            if (!drawer) return;
+
+            if (show) {
+                drawer.classList.remove('hidden');
+            } else {
+                drawer.classList.add('hidden');
+            }
+        }
+
+
+        // --- 7. LANGUAGE TOGGLE & DISPATCH CALCULATOR ---
+        function toggleLanguage() {
+            currentLang = currentLang === 'en' ? 'am' : 'en';
+            
+            const langLabel = document.getElementById('langLabel');
+            if (langLabel) {
+                langLabel.innerText = currentLang === 'en' ? 'አማርኛ' : 'English';
+            }
+
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (I18N[currentLang] && I18N[currentLang][key]) {
+                    el.innerText = I18N[currentLang][key];
+                }
+            });
+
+            renderProducts();
+            updateSensoryChart();
+            updateCartUI();
+        }
+
+        function calculateDeliveryFee() {
+            const select = document.getElementById('subcitySelect');
+            const feeVal = document.getElementById('estFeeVal');
+            const timeVal = document.getElementById('estTimeVal');
+            if (!select || !feeVal) return;
+
+            const val = select.value;
+            let fee = 100;
+            let time = '20 - 40 Mins';
+
+            switch (val) {
+                case 'kolfe': fee = 100; time = '20 - 40 Mins'; break;
+                case 'nifas': fee = 200; time = '45 - 60 Mins'; break;
+                case 'kirkos': fee = 250; time = '50 - 70 Mins'; break;
+                case 'bole': fee = 280; time = '60 - 80 Mins'; break;
+                case 'arada': fee = 220; time = '45 - 65 Mins'; break;
+                case 'yeka': fee = 300; time = '60 - 90 Mins'; break;
+            }
+
+            feeVal.innerText = `${fee} ETB`;
+            timeVal.innerText = time;
+        }
+
+        function checkoutViaPhone() {
+            window.location.href = 'tel:0980482885';
+        }
+
+        function checkoutViaWhatsApp() {
+            if (cart.length === 0) {
+                alert(currentLang === 'am' ? 'እባክዎን በመጀመሪያ ምርት ይምረጡ' : 'Please add items to your cart first.');
+                return;
+            }
+
+            let msg = `Hello Zemzm Etan Bet (ዘምዘም ዕጣን ቤት)! Order request from Bethel Store:\n\n`;
+            cart.forEach((item, i) => {
+                msg += `${i + 1}. ${item.name} (${item.weight}g) - ${item.price} ETB\n`;
+            });
+
+            const subtotal = cart.reduce((sum, item) => sum + item.price, 0);
+            msg += `\nTotal Subtotal: ${subtotal} ETB`;
+            msg += `\nDelivery: Bethel / Addis Ababa`;
+
+            const encodedMsg = encodeURIComponent(msg);
+            window.open(`https://wa.me/251980482885?text=${encodedMsg}`, '_blank');
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            if (menu) menu.classList.toggle('hidden');
+        }
+
+        function subscribeNewsletter() {
+            alert(currentLang === 'am' ? 'እናመሰግናለን!' : 'Thank you for subscribing!');
+        }
+
+        // --- 8. INITIALIZATION ON DOM LOAD ---
+        window.addEventListener('DOMContentLoaded', () => {
+            init3DHeroVisualizer();
+            initFeatured3D();
+            initSensoryChart();
+            renderProducts();
+            updateCartUI();
+
+            const yr = document.getElementById('yearVal');
+            if (yr) yr.innerText = new Date().getFullYear();
+        });
+    </script>
+</body>
+</html>
