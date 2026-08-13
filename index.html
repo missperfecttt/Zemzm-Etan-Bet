@@ -14,6 +14,10 @@
     <!-- Chart.js for Sensory Profiles -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+    <!-- Google Fonts - Better Amharic (Ethiopic) support -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Ethiopic:wght@400;500;600;700&family=Noto+Serif+Ethiopic:wght@400;600;700&display=swap" rel="stylesheet">
     <!-- Font Awesome for Social Media Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     
@@ -32,8 +36,8 @@
                         goldAccent: '#d97706',
                     },
                     fontFamily: {
-                        serif: ['Georgia', 'serif'],
-                        sans: ['system-ui', '-apple-system', 'sans-serif'],
+                        serif: ['"Noto Serif Ethiopic"', 'Georgia', 'serif'],
+                        sans: ['"Noto Sans Ethiopic"', 'system-ui', '-apple-system', 'sans-serif'],
                     }
                 }
             }
@@ -75,7 +79,8 @@
             backdrop-filter: blur(12px);
             border: 1px solid rgba(245, 158, 11, 0.15);
         }
-        /* 3D hover tilt simulation class */
+        /* 3D hove
+r tilt simulation class */
         .tilt-card {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             transform-style: preserve-3d;
@@ -93,8 +98,7 @@
         }
         /* Safe area for notched phones */
         body {
-            padding-left: env(safe-area-inset-lef
-t);
+            padding-left: env(safe-area-inset-left);
             padding-right: env(safe-area-inset-right);
         }
         /* Larger touch targets */
@@ -140,6 +144,30 @@ t);
             accent-color: #f59e0b;
         }
 
+
+        /* Extra phone polish */
+        @media (max-width: 640px) {
+            .space-y-20 > * + * { margin-top: 3.5rem !important; }
+            main { padding-bottom: 5rem; }
+            /* Bigger cart button text on phone */
+            header button span { font-size: 0.8rem; }
+            /* Product image height on phone */
+            #productGrid .h-32 { height: 9rem; }
+            /* Make category cards easier to tap */
+            #categories .tilt-card { paddi
+ng: 1.25rem !important; }
+            /* Footer social icons larger */
+            footer .w-9 { width: 2.75rem; height: 2.75rem; }
+            /* Better select & input on iOS */
+            select, input, textarea { font-size: 16px !important; } /* prevents iOS zoom */
+        }
+        /* Amharic text rendering improvements */
+        body, .font-sans, .font-serif {
+            font-feature-settings: "kern";
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+        }
+
     </style>
 </head>
 <body class="bg-espresso text-gray-200 font-sans antialiased selection:bg-turmeric selection:text-espresso">
@@ -155,8 +183,7 @@ t);
          5. Sensory Radar Profile Analyzer powered by Chart.js with streamlined descriptions.
          6. Community & Local Trust Section with coffee ceremony heritage photography and short key stats.
          7. Interactive Bethel Location & Delivery Hub with clean map visualizer, landmarks, store hours, and subcity delivery estimation.
-         8. Interactive Product Detail Modal with photo gallery, 3D rotating visualizer, origin context, and weight/
-price calculator.
+         8. Interactive Product Detail Modal with photo gallery, 3D rotating visualizer, origin context, and weight/price calculator.
          9. Cart Drawer with local pickup vs delivery options and direct WhatsApp/Phone order launcher for +251 98 048 2885.
     -->
 
@@ -173,7 +200,8 @@ price calculator.
     <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
 
     <!-- NAVIGATION HEADER -->
-    <header class="sticky top-0 z-40 glass-panel border-b border-amber-900/30">
+    <header class="sticky top-
+0 z-40 glass-panel border-b border-amber-900/30">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <!-- Brand Logo -->
             <a href="#" class="flex items-center gap-3 group">
@@ -200,8 +228,7 @@ price calculator.
             <div class="flex items-center space-x-4">
                 <!-- Language Switcher (No Dot) -->
                 <button id="langToggleBtn" onclick="toggleLanguage()" class="px-3.5 py-1.5 rounded-full bg-panelBg border border-amber-500/30 text-xs font-semibold text-cream hover:border-turmeric transition-all shadow-sm" title="Switch Language / ቋንቋ ይቀይሩ">
-                    <span
- id="langLabel">አማርኛ</span>
+                    <span id="langLabel">English</span>
                 </button>
 
                 <!-- Cart Button -->
@@ -212,7 +239,8 @@ price calculator.
 
                 <!-- Mobile Menu Button -->
                 <button onclick="toggleMobileMenu()" class="md:hidden min-w-[52px] min-h-[44px] px-3 py-2 text-cream text-sm font-bold border border-amber-900/40 rounded-xl active:bg-turmeric active:text-espresso transition-colors">
-                    MENU
+     
+               MENU
                 </button>
             </div>
         </div>
@@ -249,15 +277,15 @@ price calculator.
                         <span class="text-transparent bg-clip-text bg-gradient-to-r from-turmeric via-amber-200 to-berbere" data-i18n="hero_heading_2">የጣዕም እና የሽታ ጥግ</span>
                     </h1>
 
-                    <p class="text-base text-amber-100/80 max-w-xl font-l
-ight leading-relaxed mx-auto lg:mx-0" data-i18n="hero_subtext">
+                    <p class="text-base text-amber-100/80 max-w-xl font-light leading-relaxed mx-auto lg:mx-0" data-i18n="hero_subtext">
                         Authentic Ethiopian spices, ground Shiro, and pure Ogaden frankincense tears. Located in front of Awash Bank, Bethel Street.
                     </p>
 
                     <!-- Store Stats (No Dots) -->
                     <div class="pt-1 flex flex-wrap justify-center lg:justify-start gap-3 text-xs">
                         <div class="px-3.5 py-2 rounded-xl bg-cardBg/90 border border-amber-900/40 text-amber-200" data-i18n="stat_location">
-                            Bethel, Kolfe Keranyo K07
+                            Bethel, Kolfe Kera
+nyo K07
                         </div>
                         <div class="px-3.5 py-2 rounded-xl bg-cardBg/90 border border-amber-900/40 text-amber-200" data-i18n="stat_hours">
                             Open Daily till 9:30 PM
@@ -296,10 +324,10 @@ ight leading-relaxed mx-auto lg:mx-0" data-i18n="hero_subtext">
                         
                         <!-- 3D Interactive Canvas -->
                         <div class="h-44 w-full relative my-1 flex items-center justify-center">
-             
-               <canvas id="featuredProduct3DCanvas" class="w-full h-full cursor-grab active:cursor-grabbing"></canvas>
+                            <canvas id="featuredProduct3DCanvas" class="w-full h-full cursor-grab active:cursor-grabbing"></canvas>
                             <div class="absolute bottom-1 right-2 text-[10px] text-amber-200/50 italic">
                                 Drag to rotate 3D view
+
                             </div>
                         </div>
 
@@ -338,8 +366,8 @@ ight leading-relaxed mx-auto lg:mx-0" data-i18n="hero_subtext">
                 </div>
 
                 <!-- Pillar 2: Etan & Resins -->
-                <div onclick="filterByCategory('etan')" class="cursor-pointer tilt-card p-5 rounded-2xl bg-cardBg border border-amber-900/30 hover:border-turmeric/50 transition-all text-center s
-pace-y-3 group">
+                <div onclick="filterByCategory('etan')" class="cursor-pointer tilt-card p-5 rounded-2xl bg-cardBg border border-amber-900/30 hover:border-turmeric/50 transi
+tion-all text-center space-y-3 group">
                     <img src="https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=400&q=80" alt="Incense Resins" class="w-20 h-20 mx-auto rounded-full object-cover border-2 border-turmeric/40 shadow-xl group-hover:scale-105 transition-transform">
                     <h3 class="text-lg font-serif font-bold text-cream" data-i18n="cat_2_title">Incense & Resins (ዕጣን እና ከረቤ)</h3>
                     <p class="text-xs text-amber-100/70 leading-relaxed" data-i18n="cat_2_desc">Frankincense tears, red resin & scented myrrh.</p>
@@ -373,13 +401,13 @@ pace-y-3 group">
 
             <!-- Controls Panel: Filters & Sorting -->
             <div class="p-5 rounded-2xl bg-cardBg border border-amber-900/30 mb-6 space-y-4">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-5 items-center">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-5 items-ce
+nter">
                     
                     <!-- Category Tabs -->
                     <div>
                         <label class="block text-xs font-semibold text-amber-200/80 uppercase tracking-wider mb-2" data-i18n="label_category">Category Filter</label>
-                        <div class="flex flex-wrap gap-1.5"
- id="categoryButtons">
+                        <div class="flex flex-wrap gap-1.5" id="categoryButtons">
                             <button onclick="setCategoryFilter('all')" class="cat-btn active px-3 py-1 rounded-lg text-xs font-bold bg-turmeric text-espresso" data-cat="all" data-i18n="filter_all">All</button>
                             <button onclick="setCategoryFilter('spices')" class="cat-btn px-3 py-1 rounded-lg text-xs font-medium bg-panelBg text-gray-300 hover:text-turmeric border border-amber-900/30" data-cat="spices" data-i18n="filter_spices">Spices</button>
                             <button onclick="setCategoryFilter('etan')" class="cat-btn px-3 py-1 rounded-lg text-xs font-medium bg-panelBg text-gray-300 hover:text-turmeric border border-amber-900/30" data-cat="etan" data-i18n="filter_etan">Etan</button>
@@ -417,15 +445,15 @@ pace-y-3 group">
             </div>
         </section>
 
-        <!-- SECTION 4: SENSORY AROMA & SPICE RADAR ANALYZER -->
+        <!-- SE
+CTION 4: SENSORY AROMA & SPICE RADAR ANALYZER -->
         <section id="sensory" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="p-6 sm:p-10 rounded-3xl bg-gradient-to-br from-cardBg via-panelBg to-espresso border border-amber-500/20 shadow-2xl">
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                     
                     <!-- Left Column: Controls -->
                     <div class="lg:col-span-6 space-y-5">
-                        <div class="inline-block px-3 py-1 rounded-full bg-turmeric/10 border border-turmeric/30 text-turmeric text-xs font-
-bold">
+                        <div class="inline-block px-3 py-1 rounded-full bg-turmeric/10 border border-turmeric/30 text-turmeric text-xs font-bold">
                             Sensory Profile Analysis
                         </div>
                         <h2 class="text-2xl sm:text-3xl font-serif font-bold text-cream" data-i18n="sensory_title">
@@ -458,7 +486,8 @@ bold">
                                 <span id="sensoryUsageVal" class="text-xs font-bold text-cream">Doro Wat, Key Wat, Stews</span>
                             </div>
                         </div>
-                    </div>
+                   
+ </div>
 
                     <!-- Right Column: Chart.js Container -->
                     <div class="lg:col-span-6 flex justify-center">
@@ -476,8 +505,7 @@ bold">
                 <!-- Heritage Card -->
                 <div class="lg:col-span-7 p-6 rounded-3xl bg-cardBg border border-amber-900/30 space-y-4">
                     <div class="flex items-center gap-3">
-                        <img src="https://images.unsplash.com
-/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=150&q=80" alt="Coffee Ceremony" class="w-12 h-12 rounded-xl object-cover border border-amber-500/40 shadow-md">
+                        <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=150&q=80" alt="Coffee Ceremony" class="w-12 h-12 rounded-xl object-cover border border-amber-500/40 shadow-md">
                         <h3 class="text-xl font-serif font-bold text-cream" data-i18n="heritage_title">Coffee & Incense Heritage</h3>
                     </div>
                     <p class="text-xs sm:text-sm text-amber-100/80 leading-relaxed" data-i18n="heritage_desc">
@@ -508,7 +536,8 @@ bold">
                             <span class="text-[10px] text-gray-400">Bethel Customer</span>
                         </div>
                         <p class="text-xs text-cream italic mb-1">"The Berbere has real traditional color and korarima aroma."</p>
-                        <span class="text-[11px] text-turmeric font-bold block">— Abeni T.</span>
+                        <span class="text-[11px] text-turmeri
+c font-bold block">— Abeni T.</span>
                     </div>
 
                     <div class="p-4 rounded-2xl bg-panelBg border border-amber-500/20">
@@ -527,8 +556,7 @@ bold">
         <section id="location" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-xl mx-auto mb-8 space-y-1">
                 <h2 class="text-2xl sm:text-3xl font-bold font-serif text-cream" data-i18n="loc_section_title">Visit Our Bethel Store</h2>
-                <p class="text-amber-200/70 text-xs sm:text-sm" data-i18n="loc_section_sub">Front of Awash Bank, Bethel Street, Kolfe Keranyo K07, 
-Addis Ababa.</p>
+                <p class="text-amber-200/70 text-xs sm:text-sm" data-i18n="loc_section_sub">Front of Awash Bank, Bethel Street, Kolfe Keranyo K07, Addis Ababa.</p>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
@@ -557,7 +585,8 @@ Addis Ababa.</p>
 
                             <!-- Center Pin: Zemzm Etan Bet (No Dot) -->
                             <div class="relative z-10 self-center text-center my-auto">
-                                <div class="inline-block px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-turmeric to-berbere text-espresso font-bold text-xs shadow-xl shadow-amber-500/30">
+                                <div class="inline-block px-3.5 py-1.
+5 rounded-xl bg-gradient-to-r from-turmeric to-berbere text-espresso font-bold text-xs shadow-xl shadow-amber-500/30">
                                     Zemzm Etan Bet (ዘምዘም ዕጣን ቤት)
                                 </div>
                                 <p class="text-[10px] text-amber-200/80 mt-1 font-mono">Bethel Main Commercial Axis</p>
@@ -582,8 +611,7 @@ Addis Ababa.</p>
                 </div>
 
                 <!-- Subcity Delivery Estimator Widget -->
-                <div class="lg:col-span-5 p-5
- rounded-3xl bg-panelBg border border-amber-500/20 space-y-4">
+                <div class="lg:col-span-5 p-5 rounded-3xl bg-panelBg border border-amber-500/20 space-y-4">
                     <h3 class="text-lg font-serif font-bold text-cream" data-i18n="del_calculator_title">Addis Ababa Delivery</h3>
                     <p class="text-xs text-amber-100/70" data-i18n="del_calculator_desc">Select subcity to calculate dispatch fees from Bethel.</p>
 
@@ -602,7 +630,8 @@ Addis Ababa.</p>
                     <div id="deliveryFeeResult" class="p-3 rounded-xl bg-espresso/80 border border-amber-900/40 space-y-1">
                         <div class="flex justify-between items-center text-xs text-gray-400">
                             <span data-i18n="label_est_time">Estimated Time</span>
-                            <span id="estTimeVal" class="text-amber-200 font-medium">20 - 40 Mins</span>
+                            <span 
+id="estTimeVal" class="text-amber-200 font-medium">20 - 40 Mins</span>
                         </div>
                         <div class="flex justify-between items-center">
                             <span class="text-xs text-gray-400" data-i18n="label_est_fee">Dispatch Fee</span>
@@ -635,8 +664,7 @@ Addis Ababa.</p>
             <div>
                 <h4 class="text-cream font-bold mb-2 uppercase tracking-wider text-[11px]" data-i18n="footer_links">Quick Navigation</h4>
                 <ul class="space-y-1.5">
-                    <li><a href="#home" class="hover
-:text-turmeric transition-colors">Home</a></li>
+                    <li><a href="#home" class="hover:text-turmeric transition-colors">Home</a></li>
                     <li><a href="#catalog" class="hover:text-turmeric transition-colors">Spice Catalog</a></li>
                     <li><a href="#sensory" class="hover:text-turmeric transition-colors">Sensory Matrix</a></li>
                     <li><a href="#location" class="hover:text-turmeric transition-colors">Bethel Location</a></li>
@@ -659,7 +687,8 @@ Addis Ababa.</p>
                     To check some updates you might want to check, please follow us on Telegram.
                 </p>
 
-                <!-- Telegram Updates -->
+       
+         <!-- Telegram Updates -->
                 <a href="https://t.me/zemzmetanbet"
                    target="_blank"
                    rel="noopener noreferrer"
@@ -699,8 +728,7 @@ Addis Ababa.</p>
                            target="_blank"
                            rel="noopener noreferrer"
                            aria-label="Facebook"
-                           class="w-9 h
--9 rounded-lg bg-panelBg border border-amber-900/40 flex items-center justify-center text-gray-400 hover:text-turmeric hover:border-turmeric transition-all">
+                           class="w-9 h-9 rounded-lg bg-panelBg border border-amber-900/40 flex items-center justify-center text-gray-400 hover:text-turmeric hover:border-turmeric transition-all">
                             <i class="fa-brands fa-facebook-f"></i>
                         </a>
 
@@ -719,7 +747,8 @@ Addis Ababa.</p>
         </div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-amber-900/30 pt-4 text-center text-[10px] text-gray-500">
-            © <span id="yearVal">2026</span> Zemzm Etan Bet (ዘምዘም ዕጣን ቤት). All rights reserved. | Bethel, Addis Ababa.
+            © <span id="yearVal">2026</span> Zemzm Etan Bet (ዘምዘ
+ም ዕጣን ቤት). All rights reserved. | Bethel, Addis Ababa.
         </div>
     </footer>
 
@@ -754,8 +783,7 @@ Addis Ababa.</p>
                     <!-- Portion Selector -->
                     <div class="space-y-1">
                         <label class="block text-[11px] font-semibold text-amber-200/80 uppercase" data-i18n="label_portion">Select Portion Weight</label>
-                        <select id="modalWeightSelect" onchange="updateModalPrice()" class="w-full px-3 py-1.5 rounded-xl bg-espresso border bord
-er-amber-900/40 text-cream text-xs focus:outline-none focus:border-turmeric">
+                        <select id="modalWeightSelect" onchange="updateModalPrice()" class="w-full px-3 py-1.5 rounded-xl bg-espresso border border-amber-900/40 text-cream text-xs focus:outline-none focus:border-turmeric">
                             <option value="250">250 grams</option>
                             <option value="500" selected>500 grams</option>
                             <option value="1000">1.0 Kilogram</option>
@@ -767,7 +795,8 @@ er-amber-900/40 text-cream text-xs focus:outline-none focus:border-turmeric">
                             <span class="text-[10px] text-gray-400 block" data-i18n="label_total_price">Total Price</span>
                             <span id="modalPrice" class="text-xl font-bold text-turmeric font-mono">0 ETB</span>
                         </div>
-                        <button id="modalAddToCartBtn" onclick="addModalItemToCart()" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-turmeric to-amber-600 text-espresso font-bold text-xs shadow-lg hover:scale-105 transition-all">
+                        <button id="modalAddToCartBtn"
+ onclick="addModalItemToCart()" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-turmeric to-amber-600 text-espresso font-bold text-xs shadow-lg hover:scale-105 transition-all">
                             Add to Cart
                         </button>
                     </div>
@@ -813,15 +842,15 @@ er-amber-900/40 text-cream text-xs focus:outline-none focus:border-turmeric">
                         <span data-i18n="cart_dispatch">Estimated Local Dispatch</span>
                         <span id="cartDispatch" class="font-mono text-cream font-bold">100 ETB</span>
                     </div>
-                    <div class="flex just
-ify-between text-base font-bold text-turmeric pt-2 border-t border-amber-900/30">
+                    <div class="flex justify-between text-base font-bold text-turmeric pt-2 border-t border-amber-900/30">
                         <span data-i18n="cart_total">Total Order</span>
                         <span id="cartTotal" class="font-mono">100 ETB</span>
                     </div>
                 </div>
 
                 <div class="space-y-2">
-                    <button onclick="checkoutViaPhone()" class="w-full py-3 rounded-xl bg-gradient-to-r from-turmeric to-amber-600 text-espresso font-bold text-xs uppercase tracking-wider shadow-lg hover:scale-102 transition-all flex items-center justify-center">
+                    <button onclick="checkoutViaPhone()" class="w-full py-3 rounded-xl bg-gradient-to-r from-turmeric to-amber-600 text-espresso font-bold 
+text-xs uppercase tracking-wider shadow-lg hover:scale-102 transition-all flex items-center justify-center">
                         <span>Order via Phone / Call 098 048 2885</span>
                     </button>
                     <button onclick="checkoutViaWhatsApp()" class="w-full py-3 rounded-xl bg-emerald-600 text-white font-bold text-xs uppercase tracking-wider hover:bg-emerald-500 transition-all flex items-center justify-center">
@@ -836,7 +865,7 @@ ify-between text-base font-bold text-turmeric pt-2 border-t border-amber-900/30"
     <!-- JAVASCRIPT APPLICATION LOGIC -->
     <script>
         // --- 1. BASE DATA & STATE MANAGEMENT ---
-        let currentLang = 'am';
+        let currentLang = 'am'; // Default language is Amharic
         let activeCategoryFilter = 'all';
         let cart = [];
         let activeModalProduct = null;
@@ -886,10 +915,10 @@ ify-between text-base font-bold text-turmeric pt-2 border-t border-amber-900/30"
                 heatLevel: 2,
                 origin: 'Debre Birhan',
                 pairing: 'Shiro Tegabino',
-                badge: 'Es
-sential',
+                badge: 'Essential',
                 colorHex: 0xd97706,
-                imageUrl: 'https://images.unsplash.com/photo-1541544741938-0af808871cc0?auto=format&fit=crop&w=600&q=80',
+                imageUrl: 'https://images.unsplash.com/photo-1541544741938-0af808871cc0?auto=format&f
+it=crop&w=600&q=80',
                 sensory: { aroma: 70, heat: 40, earthiness: 90, warmth: 80, sweetResin: 20 }
             },
             {
@@ -955,13 +984,13 @@ sential',
                 colorHex: 0xef4444,
                 imageUrl: 'https://images.unsplash.com/photo-1588252303782-cb80119abd6d?auto=format&fit=crop&w=600&q=80',
                 sensory: { aroma: 85, heat: 100, earthiness: 50, warmth: 90, sweetResin: 10 }
-            },
+          
+  },
             {
                 id: 'red_etan',
                 category: 'etan',
                 name_en: 'Red Scented Resin Etan',
-                n
-ame_am: 'ቀይ የጣን ዕጣን',
+                name_am: 'ቀይ የጣን ዕጣን',
                 desc_en: 'Rich amber scented resin producing sweet aromatic smoke.',
                 desc_am: 'ቀይ የጣን ዕጣን ለደስ የሚል መዓዛ።',
                 priceBaseETB: 420,
@@ -1017,15 +1046,15 @@ ame_am: 'ቀይ የጣን ዕጣን',
                 msg_no_products: "No items match your selected filters.",
                 sensory_title: "Aroma & Spice Matrix",
                 sensory_desc: "Select a product to inspect its aroma, heat, earthiness, warmth, and resin values.",
-                label_select_sensory: "Select Product",
+  
+              label_select_sensory: "Select Product",
                 sensory_aroma_note: "Origin",
                 sensory_usage: "Recommended Use",
                 heritage_title: "Coffee & Incense Heritage",
                 heritage_desc: "Our frankincense tears are harvested from eastern highlands for authentic, clean-burning coffee ceremonies.",
                 stat_natural: "Pure Resins",
                 stat_rating: "Store Rating",
-          
-      stat_hub: "Local Hub",
+                stat_hub: "Local Hub",
                 loc_section_title: "Visit Our Bethel Store",
                 loc_section_sub: "Front of Awash Bank, Bethel Street, Kolfe Keranyo K07, Addis Ababa.",
                 del_calculator_title: "Addis Ababa Delivery",
@@ -1075,7 +1104,8 @@ ame_am: 'ቀይ የጣን ዕጣን',
                 cat_3_desc: "ጥቁር አዝሙድ፣ ኮሰረት እና ጤናዳም።",
                 btn_explore_cat: "ምርቶችን ይመልከቱ →",
                 shop_title: "የሱቃችን ዝርዝር",
-                shop_subtitle: "በምድብ፣ በሚያቃጥል መጠን ወይም በስም ይፈልጉ።",
+    
+            shop_subtitle: "በምድብ፣ በሚያቃጥል መጠን ወይም በስም ይፈልጉ።",
                 label_category: "የምድብ ማጣሪያ",
                 filter_all: "ሁሉንም",
                 filter_spices: "ቅመሞች",
@@ -1090,8 +1120,7 @@ ame_am: 'ቀይ የጣን ዕጣን',
                 sensory_aroma_note: "መነሻ ቦታ",
                 sensory_usage: "ለ ምን ይሆናል",
                 heritage_title: "የቡና እና የዕጣን ባህል",
-                heritage_desc: "
-ዘምዘም ዕጣን ቤት ለቡና ስነስርዓት የሚሆኑ ንጹህ የኦጋዴን ዕጣኖችን ያቀርባል።",
+                heritage_desc: "ዘምዘም ዕጣን ቤት ለቡና ስነስርዓት የሚሆኑ ንጹህ የኦጋዴን ዕጣኖችን ያቀርባል።",
                 stat_natural: "ንጹህ ዕጣን",
                 stat_rating: "የደንበኞች አስተያየት",
                 stat_hub: "ቤተል መደብር",
@@ -1126,17 +1155,20 @@ ame_am: 'ቀይ የጣን ዕጣን',
             const canvas = document.getElementById('heroCanvas');
             if (!canvas) return;
 
+            const isMobile = window.innerWidth < 768 || /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+            const particleCount = isMobile ? 35 : 90;   // Much fewer particles on phone = faster
+            const pixelRatio = isMobile ? Math.min(window.devicePixelRatio, 1.25) : Math.min(window.devicePixelRatio, 2);
+
             heroScene = new THREE.Scene();
             heroCamera = new THREE.PerspectiveCamera(60, canvas.clientWidth / canvas.clientHeight, 0.1, 1000);
             heroCamera.position.z = 25;
 
-            heroRenderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+            heroRenderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: !isMobile });
             heroRenderer.setSize(canvas.clientWidth, canvas.clientHeight);
-            heroRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
-            const particleCount = 100;
+            heroRenderer.setPixelRatio(pixelRatio);
             const geometry = new THREE.BufferGeometry();
-            const positions = new Float32Array(particleCount * 3);
+            
+const positions = new Float32Array(particleCount * 3);
             const colors = new Float32Array(particleCount * 3);
 
             const palette = [
@@ -1170,8 +1202,7 @@ ame_am: 'ቀይ የጣን ዕጣን',
             particleSystem = new THREE.Points(geometry, material);
             heroScene.add(particleSystem);
 
-            const ambientLight = new TH
-REE.AmbientLight(0xffffff, 0.8);
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
             heroScene.add(ambientLight);
 
             window.addEventListener('mousemove', (e) => {
@@ -1197,21 +1228,26 @@ REE.AmbientLight(0xffffff, 0.8);
             const canvas = document.getElementById('featuredProduct3DCanvas');
             if (!canvas) return;
 
+            const isMobile = window.innerWidth < 768 || /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
             featScene = new THREE.Scene();
             featCamera = new THREE.PerspectiveCamera(50, canvas.clientWidth / canvas.clientHeight, 0.1, 100);
             featCamera.position.z = 4.5;
 
-            featRenderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+            featRenderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: !isMobile });
             featRenderer.setSize(canvas.clientWidth, canvas.clientHeight);
+            featRenderer.setPixelRatio(isMobile ? 1.2 : Math.min(window.devicePixelRatio, 2));
 
-            const geo = new THREE.IcosahedronGeometry(1.5, 1);
+            // Lower detail geometry on mobile for speed
+            const geo = new THREE.IcosahedronGeometry(1.5, isMobile ? 0 : 1);
             const mat = new THREE.MeshStandardMaterial({
                 color: 0xf59e0b,
                 roughness: 0.3,
                 metalness: 0.2
             });
 
-            featMesh = new THREE.Mesh(geo, mat);
+            featMesh = new THREE.Mesh(geo, m
+at);
             featScene.add(featMesh);
 
             const light1 = new THREE.DirectionalLight(0xfff3c7, 1.2);
@@ -1220,18 +1256,30 @@ REE.AmbientLight(0xffffff, 0.8);
             featScene.add(new THREE.AmbientLight(0xffffff, 0.5));
 
             let isDragging = false;
-            let previousMousePosition = { x: 0, y: 0 };
+            let previousPosition = { x: 0, y: 0 };
 
-            canvas.addEventListener('mousedown', () => { isDragging = true; });
-            canvas.addEventListener('mousemove', (e) => {
-                if (isDragging) {
-                    const deltaMove = { x: e.clientX - previousMousePosition.x, y: e.clientY - previousMousePosition.y };
-                    featMesh.rotation.y += deltaMove.x * 0.01;
-                    featMesh.rotation.x += deltaMove.y * 0.01;
-                }
-                previousMousePosition = { x: e.clientX, y: e.clientY };
-            });
-            window.addEventListener('mouseup', () => { isDragging = false; });
+            function startDrag(x, y) { isDragging = true; previousPosition = { x, y }; }
+            function moveDrag(x, y) {
+                if (!isDragging) return;
+                featMesh.rotation.y += (x - previousPosition.x) * 0.01;
+                featMesh.rotation.x += (y - previousPosition.y) * 0.01;
+                previousPosition = { x, y };
+            }
+            function endDrag() { isDragging = false; }
+
+            // Mouse
+            canvas.addEventListener('mousedown', (e) => startDrag(e.clientX, e.clientY));
+            canvas.addEventListener('mousemove', (e) => moveDrag(e.clientX, e.clientY));
+            window.addEventListener('mouseup', endDrag);
+
+            // Touch (phone)
+            canvas.addEventListener('touchstart', (e) => {
+                if (e.touches.length === 1) startDrag(e.touches[0].clientX, e.touches[0].clientY);
+            }, { passive: true });
+            canvas.addEventListener('touchmove', (e) => {
+                if (e.touches.length === 1) moveDrag(e.touches[0].clientX, e.touches[0].clientY);
+            }, { passive: true });
+            canvas.addEventListener('touchend', endDrag);
 
             function animateFeat() {
                 requestAnimationFrame(animateFeat);
@@ -1247,17 +1295,19 @@ REE.AmbientLight(0xffffff, 0.8);
             const canvas = document.getElementById('modal3DCanvas');
             if (!canvas) return;
 
+            const isMobile = window.innerWidth < 768 || /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
             modalScene = new THREE.Scene();
             modalCamera = new THREE.PerspectiveCamera(50, canvas.clientWidth / canvas.clientHeight, 0.1, 100);
             modalCamera.position.z = 4;
 
-            modalRenderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+            modalRenderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: !isMobile });
             modalRenderer.setSize(canvas.clientWidth, canvas.clientHeight);
+            modalRenderer.setPixelRatio(isMobile ? 1.15 : Math.min(window.devicePixelRatio, 2));
 
-            const geo = new THREE.DodecahedronGeometry(1.4, 1);
+            const geo = new THREE.DodecahedronGeometry(1.4, isMobile ? 0 : 1);
             const mat = new THREE.MeshStandardMaterial({
-       
-         color: colorHex || 0xf59e0b,
+                color: colorHex || 0xf59e0b,
                 roughness: 0.4,
                 metalness: 0.1
             });
@@ -1272,7 +1322,8 @@ REE.AmbientLight(0xffffff, 0.8);
 
             function animateModal() {
                 if (modalMesh) {
-                    requestAnimationFrame(animateModal);
+                
+    requestAnimationFrame(animateModal);
                     modalMesh.rotation.y += 0.008;
                     modalMesh.rotation.x += 0.004;
                     modalRenderer.render(modalScene, modalCamera);
@@ -1346,14 +1397,14 @@ REE.AmbientLight(0xffffff, 0.8);
             sensoryChart.update();
 
             const noteVal = document.getElementById('sensoryNoteVal');
-          
-  const usageVal = document.getElementById('sensoryUsageVal');
+            const usageVal = document.getElementById('sensoryUsageVal');
             if (noteVal) noteVal.innerText = product.origin;
             if (usageVal) usageVal.innerText = product.pairing;
         }
 
 
-        // --- 5. RENDER PRODUCTS CATALOG ---
+        // --- 5.
+ RENDER PRODUCTS CATALOG ---
         function renderProducts() {
             const grid = document.getElementById('productGrid');
             const noProductsMsg = document.getElementById('noProductsMsg');
@@ -1406,11 +1457,11 @@ REE.AmbientLight(0xffffff, 0.8);
                                 <div>
                                     <h3 class="text-base font-serif font-bold text-cream">${name}</h3>
                                     <p class="text-[11px] text-amber-100/70 line-clamp-2 mt-0.5">${desc}</p>
-                                </div>
+                                </div
+>
                             </div>
 
-                            <div class="pt-2 
-border-t border-amber-900/30 space-y-2">
+                            <div class="pt-2 border-t border-amber-900/30 space-y-2">
                                 <div class="flex items-center justify-between">
                                     <span class="text-[11px] text-gray-400">${currentLang === 'am' ? 'ዋጋ' : 'Price'}</span>
                                     <span class="text-base font-bold text-turmeric font-mono">${p.priceBaseETB} ETB</span>
@@ -1476,13 +1527,13 @@ border-t border-amber-900/30 space-y-2">
             const product = PRODUCTS.find(p => p.id === prodId);
             if (!product) return;
 
-            activeModalProduct = product;
+            activeModalProduct = produ
+ct;
 
             document.getElementById('modalTitle').innerText = currentLang === 'am' ? product.name_am : product.name_en;
             document.getElementById('modalDesc').innerText = currentLang === 'am' ? product.desc_am : product.desc_en;
             document.getElementById('modalCategoryBadge').innerText = product.badge;
-            document.getElementById('modalOrigin').inn
-erText = product.origin;
+            document.getElementById('modalOrigin').innerText = product.origin;
             document.getElementById('modalPairing').innerText = product.pairing;
 
             const modalImg = document.getElementById('modalProductImg');
@@ -1557,7 +1608,8 @@ erText = product.origin;
             if (badge) {
                 badge.innerText = cart.length;
                 badge.style.transform = cart.length > 0 ? 'scale(1)' : 'scale(0)';
-            }
+   
+         }
 
             if (!cartItemsList) return;
 
@@ -1577,8 +1629,7 @@ erText = product.origin;
 
             cart.forEach((item, index) => {
                 subtotal += item.price;
-                cartItemsList.i
-nnerHTML += `
+                cartItemsList.innerHTML += `
                     <div class="p-3 rounded-xl bg-panelBg border border-amber-900/30 flex items-center justify-between gap-2 text-xs">
                         <div class="flex items-center gap-2.5">
                             <img src="${item.imageUrl}" alt="${item.name}" class="w-9 h-9 rounded-lg object-cover border border-amber-900/40">
@@ -1637,7 +1688,8 @@ nnerHTML += `
         function estimateDeliveryAndScroll() {
             calculateDeliveryFee();
 
-            const select = document.getElementById('subcitySelect');
+       
+     const select = document.getElementById('subcitySelect');
             const result = document.getElementById('deliveryFeeResult');
 
             if (select) {
@@ -1661,8 +1713,7 @@ nnerHTML += `
             let fee = 100;
             let time = '20 - 40 Mins';
 
-            switch (val) 
-{
+            switch (val) {
                 case 'kolfe': fee = 100; time = '20 - 40 Mins'; break;
                 case 'nifas': fee = 200; time = '45 - 60 Mins'; break;
                 case 'kirkos': fee = 250; time = '50 - 70 Mins'; break;
@@ -1704,6 +1755,28 @@ nnerHTML += `
         }
 
         // --- 8. INITIALIZATION ON DOM LOAD ---
+        
+        // Keep 3D canvases sharp when phone is rotated
+        window.addEventListener('resize', () => {
+            if (heroRenderer && heroCamera) {
+                const c = document.getElementById('heroCanvas');
+                if (c) {
+                    heroCamera.aspect = c.clientWidth / c.clientHeight;
+                    heroCamera.updateProjectionMatrix();
+                    heroRenderer.setSize(c.clientWidth, c.clientHeight);
+                }
+            }
+            if (featRenderer && featCamera) {
+                c
+onst c = document.getElementById('featuredProduct3DCanvas');
+                if (c) {
+                    featCamera.aspect = c.clientWidth / c.clientHeight;
+                    featCamera.updateProjectionMatrix();
+                    featRenderer.setSize(c.clientWidth, c.clientHeight);
+                }
+            }
+        });
+
         window.addEventListener('DOMContentLoaded', () => {
             init3DHeroVisualizer();
             initFeatured3D();
