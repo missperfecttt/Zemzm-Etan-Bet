@@ -1,4 +1,4 @@
-name: Stack mobile header controls
+name: Fix mobile header controls
 
 on:
   push:
@@ -12,89 +12,129 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Stack mobile header controls vertically
+      - name: Apply mobile header layout
         run: |
           python3 - <<'PY'
           from pathlib import Path
           p = Path('index.html')
           s = p.read_text()
+
           marker = '</style>'
-          css = '''
-        /* Mobile header: hamburger on top, cart and language stacked below */
+          css = r'''
+        /* Final mobile header layout: hamburger, cart, language stacked vertically */
         @media (max-width: 767px) {
           header > .max-w-7xl > .flex > div:last-child {
-            display:flex !important;
-            flex-direction:column !important;
-            align-items:center !important;
-            justify-content:center !important;
-            gap:5px !important;
-            width:44px !important;
-            flex:0 0 44px !important;
-            margin-left:6px !important;
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            justify-content: center !important;
+            gap: 4px !important;
+            width: 44px !important;
+            min-width: 44px !important;
+            flex: 0 0 44px !important;
+            margin-left: 6px !important;
           }
-          #mobileMenuButton {
-            order:1 !important;
-            width:40px !important;
-            height:36px !important;
-            min-height:36px !important;
-            padding:0 !important;
-            border-radius:10px !important;
+
+          header > .max-w-7xl > .flex > div:last-child > #mobileMenuButton {
+            display: flex !important;
+            order: 1 !important;
+            width: 40px !important;
+            height: 34px !important;
+            min-height: 34px !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            align-items: center !important;
+            justify-content: center !important;
           }
-          #langToggleBtn {
-            display:flex !important;
-            order:3 !important;
-            width:40px !important;
-            height:32px !important;
-            padding:0 !important;
-            align-items:center !important;
-            justify-content:center !important;
-            border-radius:9px !important;
-            font-size:12px !important;
-            line-height:1 !important;
+
+          header > .max-w-7xl > .flex > div:last-child > #langToggleBtn {
+            display: flex !important;
+            order: 3 !important;
+            width: 40px !important;
+            height: 30px !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            align-items: center !important;
+            justify-content: center !important;
+            border-radius: 9px !important;
+            font-size: 11px !important;
+            line-height: 1 !important;
           }
+
           header > .max-w-7xl > .flex > div:last-child > button[onclick*="toggleCartDrawer"] {
-            display:flex !important;
-            order:2 !important;
-            width:40px !important;
-            height:32px !important;
-            padding:0 !important;
-            align-items:center !important;
-            justify-content:center !important;
-            border-radius:9px !important;
-            gap:0 !important;
-            font-size:0 !important;
+            display: flex !important;
+            order: 2 !important;
+            position: relative !important;
+            width: 40px !important;
+            height: 30px !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            align-items: center !important;
+            justify-content: center !important;
+            gap: 0 !important;
+            border-radius: 9px !important;
+            font-size: 0 !important;
           }
+
+          header > .max-w-7xl > .flex > div:last-child > button[onclick*="toggleCartDrawer"] > span:first-child {
+            display: none !important;
+          }
+
           header > .max-w-7xl > .flex > div:last-child > button[onclick*="toggleCartDrawer"]::before {
-            content:'🛒';
-            font-size:17px;
-            line-height:1;
+            content: '🛒';
+            display: block;
+            font-size: 16px;
+            line-height: 1;
           }
+
           header > .max-w-7xl > .flex > div:last-child > button[onclick*="toggleCartDrawer"] #cartBadge {
-            position:absolute;
-            margin-left:24px;
-            margin-top:-20px;
-            font-size:9px !important;
+            position: absolute !important;
+            top: -2px !important;
+            right: -2px !important;
+            margin: 0 !important;
+            font-size: 8px !important;
+            line-height: 1 !important;
           }
-          #langToggleBtn #langLabel { font-size:10px !important; }
-          #langToggleBtn::before { content:'🌐'; margin-right:3px; font-size:12px; }
-          header > .max-w-7xl > .flex > a { padding-right:2px; }
+
+          #langToggleBtn::before {
+            content: '🌐';
+            display: inline-block;
+            margin-right: 3px;
+            font-size: 11px;
+          }
+
+          #langToggleBtn #langLabel {
+            font-size: 9px !important;
+          }
         }
+
         @media (max-width: 380px) {
-          header > .max-w-7xl > .flex > div:last-child { width:40px !important; flex-basis:40px !important; }
-          #mobileMenuButton { width:36px !important; }
-          #langToggleBtn,
-          header > .max-w-7xl > .flex > div:last-child > button[onclick*="toggleCartDrawer"] { width:36px !important; }
+          header > .max-w-7xl > .flex > div:last-child {
+            width: 40px !important;
+            min-width: 40px !important;
+            flex-basis: 40px !important;
+          }
+          header > .max-w-7xl > .flex > div:last-child > #mobileMenuButton,
+          header > .max-w-7xl > .flex > div:last-child > #langToggleBtn,
+          header > .max-w-7xl > .flex > div:last-child > button[onclick*="toggleCartDrawer"] {
+            width: 36px !important;
+          }
         }
 '''
-          if '/* Mobile header: hamburger on top, cart and language stacked below */' not in s:
-              s = s.replace(marker, css + '\n    ' + marker, 1)
-          p.write_text(s)
+
+          if '/* Final mobile header layout: hamburger, cart, language stacked vertically */' not in s:
+              if marker in s:
+                  s = s.replace(marker, css + '\n    ' + marker, 1)
+                  p.write_text(s)
           PY
-      - name: Commit stacked mobile controls
+
+      - name: Commit mobile header fix
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add index.html
-          git diff --cached --quiet && exit 0
-          git commit -m "Stack mobile hamburger cart and language controls"
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git commit -m "Fix mobile hamburger cart and language controls"
           git push
