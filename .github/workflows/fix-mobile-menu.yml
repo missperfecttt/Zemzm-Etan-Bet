@@ -1,0 +1,44 @@
+name: Convert mobile navigation to hamburger
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  mobile-menu:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Convert mobile MENU button to hamburger
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path('index.html')
+          s = p.read_text()
+          old = '''<button onclick="toggleMobileMenu()" class="md:hidden p-2 text-cream text-sm font-bold border border-amber-900/40 rounded-lg">\n                    MENU\n                </button>'''
+          new = '''<button id="mobileMenuButton" onclick="toggleMobileMenu()" aria-label="Open navigation menu" aria-expanded="false" class="md:hidden relative flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-amber-500/30 bg-panelBg text-cream shadow-md transition-all hover:border-turmeric focus:outline-none focus:ring-2 focus:ring-turmeric/50">\n                    <span class="sr-only">Open navigation menu</span>\n                    <span class="hamburger-lines" aria-hidden="true"><span></span><span></span><span></span></span>\n                </button>'''
+          if old in s:
+              s = s.replace(old, new, 1)
+          elif 'id="mobileMenuButton"' not in s:
+              raise SystemExit('Mobile menu button pattern not found')
+          marker = '</style>'
+          css = '''\n        /* Mobile hamburger navigation */\n        .hamburger-lines { display:flex; width:20px; flex-direction:column; gap:4px; align-items:stretch; }\n        .hamburger-lines span { display:block; height:2px; width:20px; border-radius:999px; background:currentColor; transition:transform .2s ease, opacity .2s ease; }\n        #mobileMenuButton.is-open .hamburger-lines span:nth-child(1) { transform:translateY(6px) rotate(45deg); }\n        #mobileMenuButton.is-open .hamburger-lines span:nth-child(2) { opacity:0; }\n        #mobileMenuButton.is-open .hamburger-lines span:nth-child(3) { transform:translateY(-6px) rotate(-45deg); }\n        @media (max-width: 767px) {\n          header .max-w-7xl { min-width:0; }\n          header .max-w-7xl > .flex { gap:.5rem; }\n          header .max-w-7xl > .flex > a { min-width:0; max-width:calc(100% - 120px); }\n          header .max-w-7xl > .flex > a > div { min-width:0; }\n          header .max-w-7xl > .flex > a h1 { min-width:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; font-size:clamp(.82rem, 4vw, 1.05rem); }\n          header .max-w-7xl > .flex > a p { white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }\n          header .max-w-7xl > .flex > div:last-child { margin-left:auto; gap:.35rem; }\n          #langToggleBtn { padding:.5rem .65rem; }\n          #mobileMenu { box-shadow:0 18px 30px rgba(0,0,0,.25); }\n        }\n        @media (max-width: 380px) {\n          #langToggleBtn { display:none; }\n        }\n'''
+          if '/* Mobile hamburger navigation */' not in s:
+              s = s.replace(marker, css + '\n    ' + marker, 1)
+          js_marker = '</body>'
+          js = '''\n<script>\n(function () {\n  const button = document.getElementById('mobileMenuButton');\n  if (!button) return;\n  const originalToggle = window.toggleMobileMenu;\n  window.toggleMobileMenu = function () {\n    if (typeof originalToggle === 'function') originalToggle();\n    const menu = document.getElementById('mobileMenu');\n    const open = menu && !menu.classList.contains('hidden');\n    button.classList.toggle('is-open', !!open);\n    button.setAttribute('aria-expanded', open ? 'true' : 'false');\n    button.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');\n  };\n})();\n</script>\n'''
+          if 'mobileMenuButton' not in s.split(js_marker)[0]:
+              raise SystemExit('Mobile button not inserted')
+          if 'window.toggleMobileMenu = function ()' not in s:
+              s = s.replace(js_marker, js + js_marker, 1)
+          p.write_text(s)\n          PY\n      - name: Commit mobile menu update
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git diff --cached --quiet && exit 0
+          git commit -m "Replace mobile MENU text with hamburger toggle"
+          git push
