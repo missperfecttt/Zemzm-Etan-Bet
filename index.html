@@ -81,6 +81,38 @@
             transform: translateY(-6px) rotateX(2deg) rotateY(-2deg);
             box-shadow: 0 20px 25px -5px rgba(245, 158, 11, 0.15), 0 10px 10px -5px rgba(0, 0, 0, 0.5);
         }
+    
+        /* Clean, centered mobile header */
+        .hamburger-lines { display:flex; width:20px; flex-direction:column; gap:4px; align-items:stretch; }
+        .hamburger-lines span { display:block; height:2px; width:20px; border-radius:999px; background:currentColor; transition:transform .2s ease, opacity .2s ease; }
+        #mobileMenuButton.is-open .hamburger-lines span:nth-child(1) { transform:translateY(6px) rotate(45deg); }
+        #mobileMenuButton.is-open .hamburger-lines span:nth-child(2) { opacity:0; }
+        #mobileMenuButton.is-open .hamburger-lines span:nth-child(3) { transform:translateY(-6px) rotate(-45deg); }
+        @media (max-width: 767px) {
+          body { overflow-x:hidden; }
+          header { width:100%; }
+          header > .max-w-7xl { height:72px !important; padding-left:16px !important; padding-right:16px !important; }
+          header > .max-w-7xl > .flex { width:100%; min-width:0; gap:10px; }
+          header > .max-w-7xl > .flex > a { min-width:0; flex:1 1 auto; max-width:none; gap:10px; }
+          header > .max-w-7xl > .flex > a img { width:42px !important; height:42px !important; flex:none; }
+          header > .max-w-7xl > .flex > a > div { min-width:0; }
+          header > .max-w-7xl > .flex > a h1 { min-width:0; max-width:100%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; font-size:clamp(.82rem,4.2vw,1.05rem); line-height:1.15; }
+          header > .max-w-7xl > .flex > a h1 span:nth-child(2) { display:none; }
+          header > .max-w-7xl > .flex > a p { margin-top:3px; max-width:100%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; font-size:9px; letter-spacing:.12em; }
+          header > .max-w-7xl > .flex > div:last-child { margin-left:auto; flex:0 0 auto; gap:0 !important; }
+          #langToggleBtn, header > .max-w-7xl > .flex > div:last-child > button[onclick*="toggleCartDrawer"] { display:none !important; }
+          #mobileMenuButton { display:flex !important; }
+          #mobileMenu { padding:10px 16px 18px !important; margin:0 !important; }
+          #mobileMenu a { padding:13px 4px !important; font-size:15px; }
+          #mobileMenu .mobile-menu-actions { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:10px; padding-top:12px; border-top:1px solid rgba(245,158,11,.15); }
+          #mobileMenu .mobile-menu-actions button { min-height:44px; border-radius:12px; background:#26201b; border:1px solid rgba(245,158,11,.25); color:#fef3c7; font-weight:700; font-size:13px; }
+        }
+        @media (max-width: 380px) {
+          header > .max-w-7xl > .flex > a img { width:38px !important; height:38px !important; }
+          header > .max-w-7xl > .flex > a h1 { font-size:.82rem; }
+          header > .max-w-7xl > .flex > a p { font-size:8px; }
+        }
+
     </style>
 </head>
 <body class="bg-espresso text-gray-200 font-sans antialiased selection:bg-turmeric selection:text-espresso">
@@ -150,8 +182,9 @@
                 </button>
 
                 <!-- Mobile Menu Button -->
-                <button onclick="toggleMobileMenu()" class="md:hidden p-2 text-cream text-sm font-bold border border-amber-900/40 rounded-lg">
-                    MENU
+                <button id="mobileMenuButton" onclick="toggleMobileMenu()" aria-label="Open navigation menu" aria-expanded="false" class="md:hidden relative flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-amber-500/30 bg-panelBg text-cream shadow-md transition-all hover:border-turmeric focus:outline-none focus:ring-2 focus:ring-turmeric/50">
+                    <span class="sr-only">Open navigation menu</span>
+                    <span class="hamburger-lines" aria-hidden="true"><span></span><span></span><span></span></span>
                 </button>
             </div>
         </div>
@@ -164,6 +197,10 @@
             <a href="#sensory" onclick="toggleMobileMenu()" class="block py-2 text-gray-300 hover:text-turmeric border-b border-panelBg" data-i18n="nav_sensory">Flavor Profile</a>
             <a href="#location" onclick="toggleMobileMenu()" class="block py-2 text-gray-300 hover:text-turmeric" data-i18n="nav_location">Visit Us</a>
         </div>
+            <div class="mobile-menu-actions">
+                <button type="button" onclick="toggleLanguage(); toggleMobileMenu();">ቋንቋ / Language</button>
+                <button type="button" onclick="toggleCartDrawer(true); toggleMobileMenu();">Cart</button>
+            </div>
     </header>
 
     <!-- MAIN CONTENT CONTAINER -->
@@ -1632,5 +1669,21 @@
             if (yr) yr.innerText = new Date().getFullYear();
         });
     </script>
+
+<script>
+(function () {
+  const button = document.getElementById('mobileMenuButton');
+  if (!button) return;
+  const originalToggle = window.toggleMobileMenu;
+  window.toggleMobileMenu = function () {
+    if (typeof originalToggle === 'function') originalToggle();
+    const menu = document.getElementById('mobileMenu');
+    const open = menu && !menu.classList.contains('hidden');
+    button.classList.toggle('is-open', !!open);
+    button.setAttribute('aria-expanded', open ? 'true' : 'false');
+    button.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');
+  };
+})();
+</script>
 </body>
 </html>
