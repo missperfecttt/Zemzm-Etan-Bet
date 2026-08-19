@@ -1,4 +1,4 @@
-name: Refine mobile header and navigation
+name: Stack mobile header controls
 
 on:
   push:
@@ -12,45 +12,89 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      - name: Refine mobile header
+      - name: Stack mobile header controls vertically
         run: |
           python3 - <<'PY'
           from pathlib import Path
           p = Path('index.html')
           s = p.read_text()
-
-          # Replace the mobile menu button with a compact hamburger button.
-          old = '''<button onclick="toggleMobileMenu()" class="md:hidden p-2 text-cream text-sm font-bold border border-amber-900/40 rounded-lg">\n                    MENU\n                </button>'''
-          new = '''<button id="mobileMenuButton" onclick="toggleMobileMenu()" aria-label="Open navigation menu" aria-expanded="false" class="md:hidden relative flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-amber-500/30 bg-panelBg text-cream shadow-md transition-all hover:border-turmeric focus:outline-none focus:ring-2 focus:ring-turmeric/50">\n                    <span class="sr-only">Open navigation menu</span>\n                    <span class="hamburger-lines" aria-hidden="true"><span></span><span></span><span></span></span>\n                </button>'''
-          if old in s:
-              s = s.replace(old, new, 1)
-
-          # Add compact mobile-only header styling.
           marker = '</style>'
-          css = '''\n        /* Clean, centered mobile header */\n        .hamburger-lines { display:flex; width:20px; flex-direction:column; gap:4px; align-items:stretch; }\n        .hamburger-lines span { display:block; height:2px; width:20px; border-radius:999px; background:currentColor; transition:transform .2s ease, opacity .2s ease; }\n        #mobileMenuButton.is-open .hamburger-lines span:nth-child(1) { transform:translateY(6px) rotate(45deg); }\n        #mobileMenuButton.is-open .hamburger-lines span:nth-child(2) { opacity:0; }\n        #mobileMenuButton.is-open .hamburger-lines span:nth-child(3) { transform:translateY(-6px) rotate(-45deg); }\n        @media (max-width: 767px) {\n          body { overflow-x:hidden; }\n          header { width:100%; }\n          header > .max-w-7xl { height:72px !important; padding-left:16px !important; padding-right:16px !important; }\n          header > .max-w-7xl > .flex { width:100%; min-width:0; gap:10px; }\n          header > .max-w-7xl > .flex > a { min-width:0; flex:1 1 auto; max-width:none; gap:10px; }\n          header > .max-w-7xl > .flex > a img { width:42px !important; height:42px !important; flex:none; }\n          header > .max-w-7xl > .flex > a > div { min-width:0; }\n          header > .max-w-7xl > .flex > a h1 { min-width:0; max-width:100%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; font-size:clamp(.82rem,4.2vw,1.05rem); line-height:1.15; }\n          header > .max-w-7xl > .flex > a h1 span:nth-child(2) { display:none; }\n          header > .max-w-7xl > .flex > a p { margin-top:3px; max-width:100%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; font-size:9px; letter-spacing:.12em; }\n          header > .max-w-7xl > .flex > div:last-child { margin-left:auto; flex:0 0 auto; gap:0 !important; }\n          #langToggleBtn, header > .max-w-7xl > .flex > div:last-child > button[onclick*="toggleCartDrawer"] { display:none !important; }\n          #mobileMenuButton { display:flex !important; }\n          #mobileMenu { padding:10px 16px 18px !important; margin:0 !important; }\n          #mobileMenu a { padding:13px 4px !important; font-size:15px; }\n          #mobileMenu .mobile-menu-actions { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:10px; padding-top:12px; border-top:1px solid rgba(245,158,11,.15); }\n          #mobileMenu .mobile-menu-actions button { min-height:44px; border-radius:12px; background:#26201b; border:1px solid rgba(245,158,11,.25); color:#fef3c7; font-weight:700; font-size:13px; }\n        }\n        @media (max-width: 380px) {\n          header > .max-w-7xl > .flex > a img { width:38px !important; height:38px !important; }\n          header > .max-w-7xl > .flex > a h1 { font-size:.82rem; }\n          header > .max-w-7xl > .flex > a p { font-size:8px; }\n        }\n'''
-          if '/* Clean, centered mobile header */' not in s:
+          css = '''
+        /* Mobile header: hamburger on top, cart and language stacked below */
+        @media (max-width: 767px) {
+          header > .max-w-7xl > .flex > div:last-child {
+            display:flex !important;
+            flex-direction:column !important;
+            align-items:center !important;
+            justify-content:center !important;
+            gap:5px !important;
+            width:44px !important;
+            flex:0 0 44px !important;
+            margin-left:6px !important;
+          }
+          #mobileMenuButton {
+            order:1 !important;
+            width:40px !important;
+            height:36px !important;
+            min-height:36px !important;
+            padding:0 !important;
+            border-radius:10px !important;
+          }
+          #langToggleBtn {
+            display:flex !important;
+            order:3 !important;
+            width:40px !important;
+            height:32px !important;
+            padding:0 !important;
+            align-items:center !important;
+            justify-content:center !important;
+            border-radius:9px !important;
+            font-size:12px !important;
+            line-height:1 !important;
+          }
+          header > .max-w-7xl > .flex > div:last-child > button[onclick*="toggleCartDrawer"] {
+            display:flex !important;
+            order:2 !important;
+            width:40px !important;
+            height:32px !important;
+            padding:0 !important;
+            align-items:center !important;
+            justify-content:center !important;
+            border-radius:9px !important;
+            gap:0 !important;
+            font-size:0 !important;
+          }
+          header > .max-w-7xl > .flex > div:last-child > button[onclick*="toggleCartDrawer"]::before {
+            content:'🛒';
+            font-size:17px;
+            line-height:1;
+          }
+          header > .max-w-7xl > .flex > div:last-child > button[onclick*="toggleCartDrawer"] #cartBadge {
+            position:absolute;
+            margin-left:24px;
+            margin-top:-20px;
+            font-size:9px !important;
+          }
+          #langToggleBtn #langLabel { font-size:10px !important; }
+          #langToggleBtn::before { content:'🌐'; margin-right:3px; font-size:12px; }
+          header > .max-w-7xl > .flex > a { padding-right:2px; }
+        }
+        @media (max-width: 380px) {
+          header > .max-w-7xl > .flex > div:last-child { width:40px !important; flex-basis:40px !important; }
+          #mobileMenuButton { width:36px !important; }
+          #langToggleBtn,
+          header > .max-w-7xl > .flex > div:last-child > button[onclick*="toggleCartDrawer"] { width:36px !important; }
+        }
+'''
+          if '/* Mobile header: hamburger on top, cart and language stacked below */' not in s:
               s = s.replace(marker, css + '\n    ' + marker, 1)
-
-          # Add cart/language actions inside the opened mobile navigation, without duplicating IDs.
-          menu_marker = '''        </div>\n    </header>'''
-          mobile_actions = '''            <div class="mobile-menu-actions">\n                <button type="button" onclick="toggleLanguage(); toggleMobileMenu();">ቋንቋ / Language</button>\n                <button type="button" onclick="toggleCartDrawer(true); toggleMobileMenu();">Cart</button>\n            </div>\n'''
-          if 'class="mobile-menu-actions"' not in s and menu_marker in s:
-              s = s.replace(menu_marker, '        </div>\n' + mobile_actions + '    </header>', 1)
-
-          # Keep the hamburger state synchronized with the existing toggle function.
-          js = '''\n<script>\n(function () {\n  const button = document.getElementById('mobileMenuButton');\n  if (!button) return;\n  const originalToggle = window.toggleMobileMenu;\n  window.toggleMobileMenu = function () {\n    if (typeof originalToggle === 'function') originalToggle();\n    const menu = document.getElementById('mobileMenu');\n    const open = menu && !menu.classList.contains('hidden');\n    button.classList.toggle('is-open', !!open);\n    button.setAttribute('aria-expanded', open ? 'true' : 'false');\n    button.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');\n  };\n})();\n</script>\n'''
-          if 'const originalToggle = window.toggleMobileMenu;' not in s:
-              s = s.replace('</body>', js + '</body>', 1)
-
           p.write_text(s)
           PY
-
-      - name: Commit mobile header refinement
+      - name: Commit stacked mobile controls
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add index.html
           git diff --cached --quiet && exit 0
-          git commit -m "Optimize mobile header and navigation layout"
+          git commit -m "Stack mobile hamburger cart and language controls"
           git push
